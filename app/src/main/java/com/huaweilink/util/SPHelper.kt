@@ -1,8 +1,12 @@
 package com.huaweilink.util
 
 import android.preference.PreferenceManager
+import com.huaweilink.constant.AppConst
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.Collator
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 添加人：  Tom Hawk
@@ -16,6 +20,7 @@ import org.json.JSONObject
 object SPHelper {
     private const val KEY_ITEMS = "items"
     private var appItems: ArrayList<JSONObject>? = null
+    private val collator: Collator by lazy { Collator.getInstance(Locale.CHINA) }
 
     fun getAppItems(): ArrayList<JSONObject> {
         val items = appItems ?: ArrayList()
@@ -42,9 +47,13 @@ object SPHelper {
     }
 
     fun saveAppItems() {
+        val items = getAppItems()
+        if (items.size > 1) {
+            items.sortWith(Comparator { o1, o2 -> collator.compare(o1.optString(AppConst.APP_NAME), o2.optString(AppConst.APP_NAME)) })
+        }
         PreferenceManager.getDefaultSharedPreferences(AppHolder.get().app())
                 .edit()
-                .putString(KEY_ITEMS, getAppItems().toString())
+                .putString(KEY_ITEMS, items.toString())
                 .apply()
     }
 }
