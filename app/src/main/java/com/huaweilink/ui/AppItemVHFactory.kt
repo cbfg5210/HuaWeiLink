@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.adapter.BViewHolder
 import com.adapter.BViewHolderFactory
 import com.huaweilink.R
-import com.huaweilink.model.AppItem
+import org.json.JSONObject
 
 /**
  * 添加人：  Tom Hawk
@@ -23,12 +23,12 @@ internal class AppItemVHFactory : BViewHolderFactory() {
     }
 
     private inner class AppItemVH(inflater: LayoutInflater, parent: ViewGroup?)
-        : BViewHolder<AppItem>(inflater, parent, R.layout.item_app) {
+        : BViewHolder<JSONObject>(inflater, parent, R.layout.item_app) {
 
         private val tvAppName: TextView = itemView.findViewById(R.id.tvAppName)
 
-        override fun setContents(item: AppItem, isSelected: Boolean, payload: Any?) {
-            tvAppName.text = item.name
+        override fun setContents(item: JSONObject, isSelected: Boolean, payload: Any?) {
+            tvAppName.text = item.optString("name")
         }
     }
 }

@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.adapter.BRecyclerAdapter
 import com.huaweilink.R
-import com.huaweilink.model.AppItem
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
         rvLinks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        BRecyclerAdapter<AppItem>(this, AppItemVHFactory())
+        BRecyclerAdapter<JSONObject>(this, AppItemVHFactory())
                 .bindRecyclerView(rvLinks)
                 .setItems(getItems())
                 .setItemClickListener { _, item, _ -> }
@@ -25,11 +25,11 @@ class MainActivity : AppCompatActivity() {
         vgMainRoot.setOnClickListener { finish() }
     }
 
-    private fun getItems(): List<AppItem> {
+    private fun getItems(): List<JSONObject> {
         return arrayListOf(
-                AppItem("Test", "Test"),
-                AppItem("Test", "Test"),
-                AppItem("Test", "Test")
+                JSONObject().put("name", "Test").put("pkgName", "Test"),
+                JSONObject().put("name", "Test").put("pkgName", "Test"),
+                JSONObject().put("name", "Test").put("pkgName", "Test")
         )
     }
 }
