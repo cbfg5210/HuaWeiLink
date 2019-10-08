@@ -15,7 +15,6 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: BRecyclerAdapter<JSONObject>
-    private val header = JSONObject()
 
     companion object {
         private const val REQ_CODE = 11
@@ -26,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         vgMainRoot.setOnClickListener { finish() }
+        tvAddLink.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
 
         setupList()
     }
@@ -35,13 +35,7 @@ class MainActivity : AppCompatActivity() {
 
         adapter = BRecyclerAdapter<JSONObject>(this, MainVHFactory())
                 .bindRecyclerView(rvLinks)
-                .setItemClickListener { _, item, position ->
-                    if (position == 0) {
-                        val intent = Intent(this, AllAppActivity::class.java)
-                        startActivityForResult(intent, REQ_CODE)
-                        return@setItemClickListener
-                    }
-
+                .setItemClickListener { _, item, _ ->
                     packageManager.getLaunchIntentForPackage(item.optString(AppConst.APP_PKG))
                             ?.run {
                                 this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -55,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshList() {
         adapter.setItems(SPHelper.getAppItems())
-        adapter.items.add(0, header)
         adapter.notifyDataSetChanged()
     }
 
