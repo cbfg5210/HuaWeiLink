@@ -1,6 +1,7 @@
 package com.huaweilink.util
 
 import android.preference.PreferenceManager
+import com.huaweilink.constant.AppConst
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -17,7 +18,7 @@ object SPHelper {
     private const val KEY_ITEMS = "items"
     private var appItems: ArrayList<JSONObject>? = null
 
-    fun getAppItems(): List<JSONObject> {
+    fun getAppItems(): ArrayList<JSONObject> {
         val items = appItems ?: ArrayList()
 
         if (appItems == null) {
@@ -34,6 +35,25 @@ object SPHelper {
         }
 
         return items
+    }
+
+    fun addAppItem(name: CharSequence, pkg: String) {
+        val newItem = JSONObject()
+                .put(AppConst.APP_NAME, name)
+                .put(AppConst.APP_PKG, pkg)
+
+        getAppItems().add(newItem)
+    }
+
+    fun removeAppItem(pkg: String) {
+        val items = getAppItems()
+
+        for (item in items) {
+            if (item.optString(AppConst.APP_PKG, null) == pkg) {
+                items.remove(item)
+                return
+            }
+        }
     }
 
     fun saveAppItems() {

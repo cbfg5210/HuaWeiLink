@@ -4,7 +4,7 @@ import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.CheckBox
 import com.adapter.BViewHolder
 import com.adapter.BViewHolderFactory
 import com.huaweilink.R
@@ -26,10 +26,16 @@ internal class AllVHFactory(private val packageManager: PackageManager) : BViewH
     private inner class AppItemVH(inflater: LayoutInflater, parent: ViewGroup?)
         : BViewHolder<PackageInfo>(inflater, parent, R.layout.item_all) {
 
-        private val tvAppName: TextView = itemView.findViewById(R.id.tvAppName)
+        private val cbOption: CheckBox = itemView.findViewById(R.id.cbOption)
 
         override fun setContents(item: PackageInfo, isSelected: Boolean, payload: Any?) {
-            tvAppName.text = item.applicationInfo.loadLabel(packageManager)
+            if (payload != null) {
+                cbOption.isChecked = isSelected
+                return
+            }
+
+            cbOption.text = item.applicationInfo.loadLabel(packageManager)
+            cbOption.isChecked = isSelected
         }
     }
 }
