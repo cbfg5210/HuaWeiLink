@@ -1,4 +1,4 @@
-package com.huaweilink.ui
+package com.huaweilink.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
