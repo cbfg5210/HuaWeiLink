@@ -31,7 +31,7 @@ class AllAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_app)
 
-        title = "所有应用"
+        title = "添加到快捷入口列表"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         setupList()
@@ -54,9 +54,7 @@ class AllAppActivity : AppCompatActivity() {
 
         val pkgs = ArrayList<String>(array.size)
 
-        array.forEach { item ->
-            pkgs.add(item.optString(AppConst.APP_PKG))
-        }
+        array.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
 
         items.forEachIndexed { index, item ->
             if (pkgs.contains(item.packageName)) {
