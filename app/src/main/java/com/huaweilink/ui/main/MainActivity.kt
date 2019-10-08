@@ -35,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 
         adapter = BRecyclerAdapter<JSONObject>(this, MainVHFactory())
                 .bindRecyclerView(rvLinks)
+                .setItemLongClickListener { _, item, position ->
+                    SPHelper.removeAppItem(item)
+                    adapter.items.remove(item)
+                    adapter.notifyItemRemoved(position)
+                }
                 .setItemClickListener { _, item, _ ->
                     packageManager.getLaunchIntentForPackage(item.optString(AppConst.APP_PKG))
                             ?.run {
