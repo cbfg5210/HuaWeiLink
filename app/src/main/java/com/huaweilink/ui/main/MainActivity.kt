@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         rvLinks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        adapter = BRecyclerAdapter<JSONObject>(this, AppItemVHFactory())
+        adapter = BRecyclerAdapter<JSONObject>(this, MainVHFactory())
                 .bindRecyclerView(rvLinks)
                 .setItemClickListener { _, item, _ -> }
 

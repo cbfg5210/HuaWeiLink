@@ -16,6 +16,6 @@
         android:background="@android:color/darker_gray"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_app" />
+        tools:listitem="@layout/item_main" />
 
 </FrameLayout>
