@@ -48,18 +48,20 @@ class AllAppActivity : AppCompatActivity() {
 
         val array = SPHelper.getAppItems()
 
-        if (array.isNotEmpty()) {
-            val pkgs = ArrayList<String>(array.size)
+        if (array.isEmpty()) {
+            return
+        }
 
-            array.forEach { item ->
-                pkgs.add(item.optString(AppConst.APP_PKG))
-            }
+        val pkgs = ArrayList<String>(array.size)
 
-            items.forEachIndexed { index, item ->
-                if (pkgs.contains(item.packageName)) {
-                    adapter.selections.add(item)
-                    adapter.notifyItemChanged(index, BRecyclerAdapter.FLAG_PAYLOADS_SELECT)
-                }
+        array.forEach { item ->
+            pkgs.add(item.optString(AppConst.APP_PKG))
+        }
+
+        items.forEachIndexed { index, item ->
+            if (pkgs.contains(item.packageName)) {
+                adapter.selections.add(item)
+                adapter.notifyItemChanged(index, BRecyclerAdapter.FLAG_PAYLOADS_SELECT)
             }
         }
     }
