@@ -12,6 +12,9 @@ import com.huaweilink.constant.AppConst
 import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_all_app.*
 import org.json.JSONObject
+import java.text.Collator
+import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * 添加人：  Tom Hawk
@@ -39,6 +42,9 @@ class AllAppActivity : AppCompatActivity() {
 
     private fun setupList() {
         val items = packageManager.getInstalledPackages(0)
+        val collator = Collator.getInstance(Locale.CHINA)
+
+        items.sortWith(Comparator { o1, o2 -> collator.compare(o1.applicationInfo.loadLabel(packageManager), o2.applicationInfo.loadLabel(packageManager)) })
 
         adapter = BRecyclerAdapter<PackageInfo>(this, AllVHFactory(packageManager))
                 .bindRecyclerView(rvApps)
@@ -51,6 +57,8 @@ class AllAppActivity : AppCompatActivity() {
         if (array.isEmpty()) {
             return
         }
+
+        isAllSelected = array.size >= items.size
 
         val pkgs = ArrayList<String>(array.size)
 
@@ -67,6 +75,13 @@ class AllAppActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_all_app, menu)
         return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        if (isAllSelected) {
+            menu.findItem(R.id.menuToggleSelectAll).title = "全不选"
+        }
+        return super.onPrepareOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
