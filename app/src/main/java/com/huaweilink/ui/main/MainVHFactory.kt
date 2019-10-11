@@ -30,7 +30,7 @@ internal class MainVHFactory : BViewHolderFactory() {
         private val tvAppName: TextView = itemView.findViewById(R.id.tvAppName)
 
         override fun setContents(item: JSONObject, isSelected: Boolean, payload: Any?) {
-            tvAppName.text = item.optString(AppConst.APP_NAME)
+            tvAppName.text = "$adapterPosition、${item.optString(AppConst.APP_NAME)}"
         }
     }
 }
