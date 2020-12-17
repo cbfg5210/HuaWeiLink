@@ -27,6 +27,7 @@ import org.json.JSONObject
 class AllAppActivity : AppCompatActivity() {
     private lateinit var adapter: RVAdapter<PackageInfo>
     private var hasChanged = false
+    private var currentFilter = R.id.actionAllApps
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,14 +77,22 @@ class AllAppActivity : AppCompatActivity() {
             onBackPressed()
             return true
         }
-
-        val items = when (item.itemId) {
+        if (item.itemId == R.id.menuFilter) {
+            return true
+        }
+        currentFilter = if (item.itemId == R.id.actionRefresh) {
+            PkgsHolder.updateList()
+            currentFilter
+        } else {
+            item.isChecked = true
+            item.itemId
+        }
+        val items = when (currentFilter) {
             R.id.actionAllApps -> PkgsHolder.getAllApps()
             R.id.actionSimpleApps -> PkgsHolder.getInstalledApps()
             R.id.actionSystemApps -> PkgsHolder.getSystemApps()
             else -> return true
         }
-        item.isChecked = true
         adapter.setItems(items, false)
 
         return true
