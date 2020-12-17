@@ -49,7 +49,7 @@ object SPHelper {
     fun saveAppItems() {
         val items = getAppItems()
         if (items.size > 1) {
-            items.sortWith(Comparator { o1, o2 -> collator.compare(o1.optString(AppConst.APP_NAME), o2.optString(AppConst.APP_NAME)) })
+            items.sortWith { o1, o2 -> collator.compare(o1.optString(AppConst.APP_NAME), o2.optString(AppConst.APP_NAME)) }
         }
         PreferenceManager.getDefaultSharedPreferences(AppHolder.get().app())
                 .edit()
