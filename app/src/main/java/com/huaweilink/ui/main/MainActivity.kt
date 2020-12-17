@@ -2,7 +2,9 @@ package com.huaweilink.ui.main
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import cbfg.rvadapter.RVAdapter
@@ -38,12 +40,19 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         adapter = RVAdapter<JSONObject>(this, MainVHFactory())
                 .bind(rvLinks)
-                .setItemLongClickListener { _, item, position ->
-                    SPHelper.removeAppItem(item)
-                    adapter.removeAt(position)
-                    adapter.notifyItemRemoved(position)
+                .setItemLongClickListener { _, item, _ ->
+                    val pkgName = item.optString(AppConst.APP_PKG)
+                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            .setData(Uri.fromParts("package", pkgName, null))
+                    startActivity(intent)
                 }
-                .setItemClickListener { _, item, _ ->
+                .setItemClickListener { view, item, position ->
+                    if (view.id == R.id.ivDelete) {
+                        SPHelper.removeAppItem(item)
+                        adapter.removeAt(position)
+                        return@setItemClickListener
+                    }
                     packageManager.getLaunchIntentForPackage(item.optString(AppConst.APP_PKG))
                             ?.run {
                                 this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

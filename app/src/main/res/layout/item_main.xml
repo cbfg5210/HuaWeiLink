@@ -2,19 +2,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="56dp"
     android:background="?attr/selectableItemBackground"
     android:paddingStart="10dp"
-    android:paddingTop="15dp"
     android:paddingEnd="10dp"
-    android:paddingBottom="15dp"
     tools:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         tools:text="AppName" />
+
+    <ImageView
+        android:id="@+id/ivDelete"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_vertical|end"
+        android:background="?selectableItemBackground"
+        android:padding="5dp"
+        android:src="@drawable/ic_baseline_clear_24" />
 </FrameLayout>

@@ -27,10 +27,16 @@ internal class MainVHFactory : RVHolderFactory() {
 
     private inner class AppItemVH(itemView: View) : RVHolder<JSONObject>(itemView) {
         private val tvAppName = itemView.tvAppName
+        private val ivDelete = itemView.ivDelete
 
         @SuppressLint("SetTextI18n")
         override fun setContent(item: JSONObject, isSelected: Boolean, payload: Any?) {
             tvAppName.text = "$adapterPosition、${item.optString(AppConst.APP_NAME)}"
+        }
+
+        override fun setListeners(itemClickListener: View.OnClickListener?, itemLongClickListener: View.OnLongClickListener?) {
+            super.setListeners(itemClickListener, itemLongClickListener)
+            ivDelete.setOnClickListener(itemClickListener)
         }
     }
 }
