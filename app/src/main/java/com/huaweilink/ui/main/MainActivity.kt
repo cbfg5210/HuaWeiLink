@@ -9,6 +9,7 @@ import cbfg.rvadapter.RVAdapter
 import com.huaweilink.R
 import com.huaweilink.constant.AppConst
 import com.huaweilink.ui.add.AllAppActivity
+import com.huaweilink.util.PkgsHolder
 import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
@@ -24,7 +25,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         vgMainRoot.setOnClickListener { finish() }
-        tvAddLink.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
+        tvAddLink.setOnClickListener {
+            PkgsHolder.setup(this)
+            startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE)
+        }
 
         setupList()
     }

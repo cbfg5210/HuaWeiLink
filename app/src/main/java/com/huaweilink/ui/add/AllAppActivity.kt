@@ -10,12 +10,10 @@ import cbfg.rvadapter.RVAdapter
 import cbfg.rvadapter.SelectStrategy
 import com.huaweilink.R
 import com.huaweilink.constant.AppConst
+import com.huaweilink.util.PkgsHolder
 import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_all_app.*
 import org.json.JSONObject
-import java.text.Collator
-import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * 添加人：  Tom Hawk
@@ -41,14 +39,10 @@ class AllAppActivity : AppCompatActivity() {
     }
 
     private fun setupList() {
-        val items = packageManager.getInstalledPackages(0)
-        val collator = Collator.getInstance(Locale.CHINA)
-        items.sortWith { o1, o2 -> collator.compare(o1.applicationInfo.loadLabel(packageManager), o2.applicationInfo.loadLabel(packageManager)) }
-
         adapter = RVAdapter<PackageInfo>(this, AllVHFactory(packageManager))
                 .bind(rvApps)
                 .setSelectable(PackageInfo::class.java, SelectStrategy.MULTI_SELECTABLE)
-                .setItems(items)
+                .setItems(PkgsHolder.getAllApps())
                 .setItemClickListener { _, item, index ->
                     if (adapter.getSelections().contains(item)) {
                         adapter.deselectAt(index)
@@ -65,7 +59,7 @@ class AllAppActivity : AppCompatActivity() {
         val pkgs = ArrayList<String>(SPHelper.appItems.size)
         SPHelper.appItems.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
 
-        items.forEachIndexed { _, item ->
+        PkgsHolder.getAllApps().forEachIndexed { _, item ->
             if (pkgs.contains(item.packageName)) {
                 adapter.select(item)
             }
@@ -80,9 +74,17 @@ class AllAppActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             onBackPressed()
-        } else {
-            item.isChecked = true
+            return true
         }
+
+        val items = when (item.itemId) {
+            R.id.actionAllApps -> PkgsHolder.getAllApps()
+            R.id.actionSimpleApps -> PkgsHolder.getInstalledApps()
+            R.id.actionSystemApps -> PkgsHolder.getSystemApps()
+            else -> return true
+        }
+        item.isChecked = true
+        adapter.setItems(items, false)
 
         return true
     }
@@ -92,7 +94,6 @@ class AllAppActivity : AppCompatActivity() {
             saveSelections()
             setResult(Activity.RESULT_OK)
         }
-
         finish()
     }
 
