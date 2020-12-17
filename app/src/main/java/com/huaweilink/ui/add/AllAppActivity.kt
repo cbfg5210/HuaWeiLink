@@ -53,16 +53,17 @@ class AllAppActivity : AppCompatActivity() {
                     hasChanged = true
                 }
 
+        refreshSelections()
+    }
+
+    private fun refreshSelections() {
         if (SPHelper.appItems.isEmpty()) {
             return
         }
-
-        val pkgs = ArrayList<String>(SPHelper.appItems.size)
-        SPHelper.appItems.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
-
-        PkgsHolder.getAllApps().forEachIndexed { _, item ->
-            if (pkgs.contains(item.packageName)) {
-                adapter.select(item)
+        val pkgs = Array<String>(SPHelper.appItems.size) { i -> SPHelper.appItems[i].optString(AppConst.APP_PKG) }
+        PkgsHolder.getAllApps().forEach {
+            if (pkgs.contains(it.packageName)) {
+                adapter.select(it)
             }
         }
     }
@@ -81,7 +82,9 @@ class AllAppActivity : AppCompatActivity() {
             return true
         }
         currentFilter = if (item.itemId == R.id.actionRefresh) {
+            //Note：updateList() 如果不  refreshSelections()，会显示没有选中任何项
             PkgsHolder.updateList()
+            refreshSelections()
             currentFilter
         } else {
             item.isChecked = true
