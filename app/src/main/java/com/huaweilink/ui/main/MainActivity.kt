@@ -13,7 +13,7 @@ import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var adapter: RVAdapter<JSONObject>
 
     companion object {
@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         vgMainRoot.setOnClickListener { finish() }
         tvAddLink.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
@@ -53,7 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun refreshList() {
-        adapter.setItems(SPHelper.getAppItems())
+        adapter.setItems(SPHelper.appItems)
         adapter.notifyDataSetChanged()
     }
 

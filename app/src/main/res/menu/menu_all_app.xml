@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="HardcodedText">
+
     <item
-        android:id="@+id/menuToggleSelectAll"
-        android:title="全选"
-        app:showAsAction="always"
-        tools:ignore="HardcodedText" />
+        android:id="@+id/menuContainer"
+        android:icon="@drawable/ic_baseline_filter_list_32"
+        android:title="Filter"
+        app:showAsAction="always">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/actionAllApps"
+                    android:checked="true"
+                    android:title="全部应用" />
+                <item
+                    android:id="@+id/actionSimpleApps"
+                    android:title="普通应用" />
+                <item
+                    android:id="@+id/actionSystemApps"
+                    android:title="系统应用" />
+            </group>
+        </menu>
+    </item>
 </menu>

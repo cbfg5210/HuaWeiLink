@@ -58,15 +58,12 @@ class AllAppActivity : AppCompatActivity() {
                     hasChanged = true
                 }
 
-        val array = SPHelper.getAppItems()
-
-        if (array.isEmpty()) {
+        if (SPHelper.appItems.isEmpty()) {
             return
         }
 
-        val pkgs = ArrayList<String>(array.size)
-
-        array.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
+        val pkgs = ArrayList<String>(SPHelper.appItems.size)
+        SPHelper.appItems.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
 
         items.forEachIndexed { _, item ->
             if (pkgs.contains(item.packageName)) {
@@ -80,37 +77,14 @@ class AllAppActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        /*if (isAllSelected) {
-            menu.findItem(R.id.menuToggleSelectAll).title = "全不选"
-        }*/
-        return super.onPrepareOptionsMenu(menu)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                true
-            }
-
-            R.id.menuToggleSelectAll -> {
-                /*isAllSelected = !isAllSelected
-                hasChanged = true
-
-                if (isAllSelected) {
-                    item.title = "全不选"
-                    adapter.selectAll()
-                } else {
-                    item.title = "全选"
-                    adapter.deselectAll()
-                }*/
-
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
+        if (item.itemId == android.R.id.home) {
+            onBackPressed()
+        } else {
+            item.isChecked = true
         }
+
+        return true
     }
 
     override fun onBackPressed() {
@@ -123,13 +97,12 @@ class AllAppActivity : AppCompatActivity() {
     }
 
     private fun saveSelections() {
-        val items = SPHelper.getAppItems()
-        items.clear()
+        SPHelper.appItems.clear()
 
         adapter.getSelections().forEach { selection ->
             JSONObject().put(AppConst.APP_NAME, selection.applicationInfo.loadLabel(packageManager))
                     .put(AppConst.APP_PKG, selection.packageName)
-                    .run { items.add(this) }
+                    .run { SPHelper.appItems.add(this) }
         }
 
         SPHelper.saveAppItems()
