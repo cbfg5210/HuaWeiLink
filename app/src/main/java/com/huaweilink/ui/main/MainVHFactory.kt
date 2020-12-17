@@ -1,12 +1,13 @@
 package com.huaweilink.ui.main
 
-import android.view.LayoutInflater
+import android.annotation.SuppressLint
+import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.adapter.BViewHolder
-import com.adapter.BViewHolderFactory
+import cbfg.rvadapter.RVHolder
+import cbfg.rvadapter.RVHolderFactory
 import com.huaweilink.R
 import com.huaweilink.constant.AppConst
+import kotlinx.android.synthetic.main.item_main.view.*
 import org.json.JSONObject
 
 /**
@@ -18,18 +19,17 @@ import org.json.JSONObject
  * 修改时间：2019/10/8 9:59
  * 修改内容：
  */
-internal class MainVHFactory : BViewHolderFactory() {
+internal class MainVHFactory : RVHolderFactory() {
 
-    override fun createViewHolder(inflater: LayoutInflater, parent: ViewGroup?, item: Any): BViewHolder<out Any> {
-        return AppItemVH(inflater, parent)
+    override fun createViewHolder(parent: ViewGroup?, viewType: Int, item: Any): RVHolder<out Any> {
+        return AppItemVH(inflate(R.layout.item_main, parent))
     }
 
-    private inner class AppItemVH(inflater: LayoutInflater, parent: ViewGroup?)
-        : BViewHolder<JSONObject>(inflater, parent, R.layout.item_main) {
+    private inner class AppItemVH(itemView: View) : RVHolder<JSONObject>(itemView) {
+        private val tvAppName = itemView.tvAppName
 
-        private val tvAppName: TextView = itemView.findViewById(R.id.tvAppName)
-
-        override fun setContents(item: JSONObject, isSelected: Boolean, payload: Any?) {
+        @SuppressLint("SetTextI18n")
+        override fun setContent(item: JSONObject, isSelected: Boolean, payload: Any?) {
             tvAppName.text = "$adapterPosition、${item.optString(AppConst.APP_NAME)}"
         }
     }

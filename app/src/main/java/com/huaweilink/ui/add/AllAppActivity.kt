@@ -6,7 +6,8 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import com.adapter.BRecyclerAdapter
+import cbfg.rvadapter.RVAdapter
+import cbfg.rvadapter.SelectStrategy
 import com.huaweilink.R
 import com.huaweilink.constant.AppConst
 import com.huaweilink.util.SPHelper
@@ -26,8 +27,7 @@ import kotlin.collections.ArrayList
  * 修改内容：
  */
 class AllAppActivity : AppCompatActivity() {
-    private var isAllSelected: Boolean = false
-    private lateinit var adapter: BRecyclerAdapter<PackageInfo>
+    private lateinit var adapter: RVAdapter<PackageInfo>
     private var hasChanged = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,14 +43,20 @@ class AllAppActivity : AppCompatActivity() {
     private fun setupList() {
         val items = packageManager.getInstalledPackages(0)
         val collator = Collator.getInstance(Locale.CHINA)
+        items.sortWith { o1, o2 -> collator.compare(o1.applicationInfo.loadLabel(packageManager), o2.applicationInfo.loadLabel(packageManager)) }
 
-        items.sortWith(Comparator { o1, o2 -> collator.compare(o1.applicationInfo.loadLabel(packageManager), o2.applicationInfo.loadLabel(packageManager)) })
-
-        adapter = BRecyclerAdapter<PackageInfo>(this, AllVHFactory(packageManager))
-                .bindRecyclerView(rvApps)
-                .setItemInfo(PackageInfo::class.java, selectable = true, multiSelectable = true)
+        adapter = RVAdapter<PackageInfo>(this, AllVHFactory(packageManager))
+                .bind(rvApps)
+                .setSelectable(PackageInfo::class.java, SelectStrategy.MULTI_SELECTABLE)
                 .setItems(items)
-                .setItemClickListener { _, _, _ -> hasChanged = true }
+                .setItemClickListener { _, item, index ->
+                    if (adapter.getSelections().contains(item)) {
+                        adapter.deselectAt(index)
+                    } else {
+                        adapter.selectAt(index)
+                    }
+                    hasChanged = true
+                }
 
         val array = SPHelper.getAppItems()
 
@@ -58,16 +64,13 @@ class AllAppActivity : AppCompatActivity() {
             return
         }
 
-        isAllSelected = array.size >= items.size
-
         val pkgs = ArrayList<String>(array.size)
 
         array.forEach { item -> pkgs.add(item.optString(AppConst.APP_PKG)) }
 
-        items.forEachIndexed { index, item ->
+        items.forEachIndexed { _, item ->
             if (pkgs.contains(item.packageName)) {
-                adapter.selections.add(item)
-                adapter.notifyItemChanged(index, BRecyclerAdapter.FLAG_PAYLOADS_SELECT)
+                adapter.select(item)
             }
         }
     }
@@ -78,9 +81,9 @@ class AllAppActivity : AppCompatActivity() {
     }
 
     override fun onPrepareOptionsMenu(menu: Menu): Boolean {
-        if (isAllSelected) {
+        /*if (isAllSelected) {
             menu.findItem(R.id.menuToggleSelectAll).title = "全不选"
-        }
+        }*/
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -92,7 +95,7 @@ class AllAppActivity : AppCompatActivity() {
             }
 
             R.id.menuToggleSelectAll -> {
-                isAllSelected = !isAllSelected
+                /*isAllSelected = !isAllSelected
                 hasChanged = true
 
                 if (isAllSelected) {
@@ -101,7 +104,7 @@ class AllAppActivity : AppCompatActivity() {
                 } else {
                     item.title = "全选"
                     adapter.deselectAll()
-                }
+                }*/
 
                 true
             }
@@ -123,11 +126,10 @@ class AllAppActivity : AppCompatActivity() {
         val items = SPHelper.getAppItems()
         items.clear()
 
-        adapter.selections.forEach { selection ->
-            val item = JSONObject().put(AppConst.APP_NAME, selection.applicationInfo.loadLabel(packageManager))
+        adapter.getSelections().forEach { selection ->
+            JSONObject().put(AppConst.APP_NAME, selection.applicationInfo.loadLabel(packageManager))
                     .put(AppConst.APP_PKG, selection.packageName)
-
-            items.add(item)
+                    .run { items.add(this) }
         }
 
         SPHelper.saveAppItems()

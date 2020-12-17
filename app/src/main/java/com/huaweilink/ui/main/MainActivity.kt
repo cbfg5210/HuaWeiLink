@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.adapter.BRecyclerAdapter
+import cbfg.rvadapter.RVAdapter
 import com.huaweilink.R
 import com.huaweilink.constant.AppConst
 import com.huaweilink.ui.add.AllAppActivity
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var adapter: BRecyclerAdapter<JSONObject>
+    private lateinit var adapter: RVAdapter<JSONObject>
 
     companion object {
         private const val REQ_CODE = 11
@@ -33,11 +33,11 @@ class MainActivity : AppCompatActivity() {
     private fun setupList() {
         rvLinks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
-        adapter = BRecyclerAdapter<JSONObject>(this, MainVHFactory())
-                .bindRecyclerView(rvLinks)
+        adapter = RVAdapter<JSONObject>(this, MainVHFactory())
+                .bind(rvLinks)
                 .setItemLongClickListener { _, item, position ->
                     SPHelper.removeAppItem(item)
-                    adapter.items.remove(item)
+                    adapter.removeAt(position)
                     adapter.notifyItemRemoved(position)
                 }
                 .setItemClickListener { _, item, _ ->
