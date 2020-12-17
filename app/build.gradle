@@ -29,13 +29,35 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles file('proguards').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File dir, String name) {
+                    return name.endsWith('.pro')
+                }
+            })
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a", "x86"
+            }
+        }
         release {
             minifyEnabled true
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles file('proguards').listFiles(new FilenameFilter() {
+                @Override
+                boolean accept(File dir, String name) {
+                    return name.endsWith('.pro')
+                }
+            })
             signingConfig signingConfigs.release
-        }
-        debug {
-            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi-v7a", "arm64-v8a"
+            }
         }
     }
 
