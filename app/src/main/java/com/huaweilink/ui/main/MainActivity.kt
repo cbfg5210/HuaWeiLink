@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         vgMainRoot.setOnClickListener { finish() }
-        tvAddLink.setOnClickListener {
+        ivEditLinks.setOnClickListener {
             PkgsHolder.setup(this)
             startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE)
         }
