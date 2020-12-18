@@ -1,7 +1,7 @@
 # compiler: R8
 # compiler_version: 2.1.75
 # min_api: 23
-# pg_map_id: 7d2e58e
+# pg_map_id: 07360b4
 # common_typos_disable
 android.support.v4.app.INotificationSideChannel -> android.support.v4.app.INotificationSideChannel:
     void cancelAll(java.lang.String) -> a
@@ -25504,8 +25504,15 @@ cbfg.rvadapter.RVAdapter -> cbfg.rvadapter.RVAdapter:
     3:5:int getItemCount():440:442 -> c
     6:6:int getItemCount():444:444 -> c
     1:1:cbfg.rvadapter.RVAdapter setSelectable$default(cbfg.rvadapter.RVAdapter,java.lang.Class,cbfg.rvadapter.SelectStrategy,boolean,boolean,int,java.lang.Object):143:143 -> c0
+    1:3:cbfg.rvadapter.RVAdapter setStateHolderFactory(cbfg.rvadapter.RVHolderFactory,boolean):96:98 -> d0
+    4:4:cbfg.rvadapter.RVAdapter setStateHolderFactory(cbfg.rvadapter.RVHolderFactory,boolean):97:97 -> d0
     1:2:int getItemViewType(int):422:423 -> e
     3:6:int getItemViewType(int):425:428 -> e
+    1:1:cbfg.rvadapter.RVAdapter setStateHolderFactory$default(cbfg.rvadapter.RVAdapter,cbfg.rvadapter.RVHolderFactory,boolean,int,java.lang.Object):94:94 -> e0
+    1:2:void showStatePage(java.lang.Object,boolean):406:407 -> f0
+    3:3:void showStatePage(java.lang.Object,boolean):409:409 -> f0
+    4:4:void showStatePage(java.lang.Object,boolean):411:411 -> f0
+    1:1:void showStatePage$default(cbfg.rvadapter.RVAdapter,java.lang.Object,boolean,int,java.lang.Object):404:404 -> g0
     1:1:void access$onItemClick(cbfg.rvadapter.RVAdapter,cbfg.rvadapter.RVHolder,android.view.View,kotlin.jvm.functions.Function3):14:14 -> p
     1:1:void onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder,int):14 -> p
     1:1:void access$onItemClick(cbfg.rvadapter.RVAdapter,cbfg.rvadapter.RVHolder,android.view.View,kotlin.jvm.functions.Function3):14:14 -> q
@@ -25564,9 +25571,10 @@ cbfg.rvadapter.RVHolderFactory -> cbfg.rvadapter.RVHolderFactory:
     android.view.LayoutInflater inflater -> a
     1:1:void <init>():14:14 -> <init>
     cbfg.rvadapter.RVHolder createViewHolder(android.view.ViewGroup,int,java.lang.Object) -> a
-    int getItemViewType(java.lang.Object) -> b
-    1:1:android.view.View inflate(int,android.view.ViewGroup):18:18 -> c
-    1:1:void setInflater$adapter_release(android.view.LayoutInflater):15:15 -> d
+    1:1:android.view.LayoutInflater getInflater$adapter_release():15:15 -> b
+    int getItemViewType(java.lang.Object) -> c
+    1:1:android.view.View inflate(int,android.view.ViewGroup):18:18 -> d
+    1:1:void setInflater$adapter_release(android.view.LayoutInflater):15:15 -> e
 cbfg.rvadapter.RVLifecycleHandler -> cbfg.rvadapter.RVLifecycleHandler:
     1:1:void <init>():11:11 -> <init>
     boolean onFailedToRecycleView(androidx.recyclerview.widget.RecyclerView$ViewHolder) -> a
@@ -25580,6 +25588,7 @@ cbfg.rvadapter.SelectStrategy -> cbfg.rvadapter.SelectStrategy:
     1:1:void <init>(java.lang.String,int):8:8 -> <init>
 com.huaweilink.R$id -> com.huaweilink.R$id:
     int tvAppName -> f
+    int vgMainRoot -> g
     int rvApps -> d
     int rvLinks -> e
     int ivDelete -> b
@@ -25595,59 +25604,58 @@ com.huaweilink.ui.add.AllAppActivity -> com.huaweilink.ui.add.AllAppActivity:
     int currentFilter -> e
     java.util.HashMap _$_findViewCache -> f
     boolean hasChanged -> d
-    1:1:void access$setHasChanged$p(com.huaweilink.ui.add.AllAppActivity,boolean):27:27 -> <init>
-    1:1:void <init>():27 -> <init>
-    2:2:void <init>():30:30 -> <init>
+    1:1:void access$refreshSelections(com.huaweilink.ui.add.AllAppActivity):26:26 -> <init>
+    1:1:void <init>():26 -> <init>
+    2:2:void <init>():29:29 -> <init>
     android.view.View _$_findCachedViewById(int) -> a
-    1:1:void access$setHasChanged$p(com.huaweilink.ui.add.AllAppActivity,boolean):27:27 -> b
-    1:1:cbfg.rvadapter.RVAdapter access$getAdapter$p(com.huaweilink.ui.add.AllAppActivity):27 -> b
-    1:1:void access$setHasChanged$p(com.huaweilink.ui.add.AllAppActivity,boolean):27:27 -> c
-    1:3:void refreshSelections():66:68 -> d
-    4:4:void refreshSelections():72:72 -> d
-    5:5:void refreshSelections():74:74 -> d
-    6:6:void refreshSelections():76:76 -> d
-    7:8:void refreshSelections():80:81 -> d
-    9:9:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> d
-    9:9:void refreshSelections():142 -> d
-    10:11:void refreshSelections():82:83 -> d
-    12:12:void refreshSelections():76:76 -> d
-    13:13:void refreshSelections():66:66 -> d
-    1:1:void saveSelections():131:131 -> e
-    2:2:void saveSelections():133:133 -> e
-    3:3:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> e
-    3:3:void saveSelections():144 -> e
-    4:6:void saveSelections():134:136 -> e
-    7:7:void saveSelections():139:139 -> e
-    8:8:void saveSelections():133:133 -> e
-    1:5:void setupList():44:48 -> f
-    6:6:void setupList():57:57 -> f
-    1:3:void onBackPressed():123:125 -> onBackPressed
-    4:4:void onBackPressed():127:127 -> onBackPressed
-    1:2:void onCreate(android.os.Bundle):33:34 -> onCreate
-    3:4:void onCreate(android.os.Bundle):36:37 -> onCreate
-    5:6:void onCreate(android.os.Bundle):39:40 -> onCreate
-    1:1:boolean onCreateOptionsMenu(android.view.Menu):90:90 -> onCreateOptionsMenu
-    1:2:boolean onOptionsItemSelected(android.view.MenuItem):95:96 -> onOptionsItemSelected
-    3:3:boolean onOptionsItemSelected(android.view.MenuItem):99:99 -> onOptionsItemSelected
-    4:4:boolean onOptionsItemSelected(android.view.MenuItem):102:102 -> onOptionsItemSelected
-    5:7:boolean onOptionsItemSelected(android.view.MenuItem):104:106 -> onOptionsItemSelected
-    8:9:boolean onOptionsItemSelected(android.view.MenuItem):108:109 -> onOptionsItemSelected
-    10:10:boolean onOptionsItemSelected(android.view.MenuItem):102:102 -> onOptionsItemSelected
-    11:11:boolean onOptionsItemSelected(android.view.MenuItem):114:114 -> onOptionsItemSelected
-    12:12:boolean onOptionsItemSelected(android.view.MenuItem):113:113 -> onOptionsItemSelected
-    13:13:boolean onOptionsItemSelected(android.view.MenuItem):112:112 -> onOptionsItemSelected
-    14:14:boolean onOptionsItemSelected(android.view.MenuItem):117:117 -> onOptionsItemSelected
-com.huaweilink.ui.add.AllAppActivity$setupList$1 -> com.huaweilink.ui.add.AllAppActivity$setupList$1:
+    1:1:void access$refreshSelections(com.huaweilink.ui.add.AllAppActivity):26:26 -> b
+    1:1:cbfg.rvadapter.RVAdapter access$getAdapter$p(com.huaweilink.ui.add.AllAppActivity):26 -> b
+    1:1:void access$refreshSelections(com.huaweilink.ui.add.AllAppActivity):26:26 -> c
+    1:1:java.util.List access$getAppsByFilter(com.huaweilink.ui.add.AllAppActivity):26 -> c
+    1:1:void access$refreshSelections(com.huaweilink.ui.add.AllAppActivity):26:26 -> d
+    1:1:void access$refreshSelections(com.huaweilink.ui.add.AllAppActivity):26:26 -> e
+    1:1:void access$setHasChanged$p(com.huaweilink.ui.add.AllAppActivity,boolean):26 -> e
+    1:1:java.util.List getAppsByFilter():106:106 -> f
+    2:2:java.util.List getAppsByFilter():110:110 -> f
+    3:3:java.util.List getAppsByFilter():109:109 -> f
+    4:4:java.util.List getAppsByFilter():108:108 -> f
+    5:5:java.util.List getAppsByFilter():107:107 -> f
+    1:4:void refreshSelections():63:66 -> g
+    5:5:void refreshSelections():69:69 -> g
+    6:6:void refreshSelections():71:71 -> g
+    7:7:void refreshSelections():73:73 -> g
+    8:9:void refreshSelections():77:78 -> g
+    10:10:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> g
+    10:10:void refreshSelections():123 -> g
+    11:12:void refreshSelections():79:80 -> g
+    13:13:void refreshSelections():73:73 -> g
+    14:14:void refreshSelections():63:63 -> g
+    1:3:void onBackPressed():115:117 -> onBackPressed
+    4:4:void onBackPressed():116:116 -> onBackPressed
+    5:5:void onBackPressed():119:119 -> onBackPressed
+    1:2:void onCreate(android.os.Bundle):32:33 -> onCreate
+    3:8:void onCreate(android.os.Bundle):35:40 -> onCreate
+    9:9:void onCreate(android.os.Bundle):49:49 -> onCreate
+    10:10:void onCreate(android.os.Bundle):54:54 -> onCreate
+    1:1:boolean onCreateOptionsMenu(android.view.Menu):87:87 -> onCreateOptionsMenu
+    1:1:boolean onOptionsItemSelected(android.view.MenuItem):92:92 -> onOptionsItemSelected
+    2:4:boolean onOptionsItemSelected(android.view.MenuItem):97:99 -> onOptionsItemSelected
+    5:5:boolean onOptionsItemSelected(android.view.MenuItem):94:94 -> onOptionsItemSelected
+    6:6:boolean onOptionsItemSelected(android.view.MenuItem):93:93 -> onOptionsItemSelected
+com.huaweilink.ui.add.AllAppActivity$onCreate$2 -> com.huaweilink.ui.add.AllAppActivity$onCreate$2:
     com.huaweilink.ui.add.AllAppActivity this$0 -> d
-    1:2:void invoke(android.view.View,android.content.pm.PackageInfo,int):49:50 -> e
-    3:3:void invoke(android.view.View,android.content.pm.PackageInfo,int):52:52 -> e
-    4:4:void invoke(android.view.View,android.content.pm.PackageInfo,int):54:54 -> e
-    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):27:27 -> f
+    1:2:void invoke(android.view.View,android.content.pm.PackageInfo,int):41:42 -> e
+    3:3:void invoke(android.view.View,android.content.pm.PackageInfo,int):44:44 -> e
+    4:4:void invoke(android.view.View,android.content.pm.PackageInfo,int):46:46 -> e
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):26:26 -> f
+com.huaweilink.ui.add.AllAppActivity$onCreate$3 -> com.huaweilink.ui.add.AllAppActivity$onCreate$3:
+    com.huaweilink.ui.add.AllAppActivity this$0 -> a
+    1:2:void update(java.util.Observable,java.lang.Object):50:51 -> update
 com.huaweilink.ui.add.AllVHFactory -> com.huaweilink.ui.add.AllVHFactory:
     android.content.pm.PackageManager packageManager -> b
     1:1:void <init>(android.content.pm.PackageManager):21:21 -> <init>
     1:1:cbfg.rvadapter.RVHolder createViewHolder(android.view.ViewGroup,int,java.lang.Object):24:24 -> a
-    1:1:android.content.pm.PackageManager access$getPackageManager$p(com.huaweilink.ui.add.AllVHFactory):21:21 -> e
+    1:1:android.content.pm.PackageManager access$getPackageManager$p(com.huaweilink.ui.add.AllVHFactory):21:21 -> f
 com.huaweilink.ui.add.AllVHFactory$AppItemVH -> com.huaweilink.ui.add.AllVHFactory$AppItemVH:
     android.widget.CheckBox cbOption -> t
     com.huaweilink.ui.add.AllVHFactory this$0 -> u
@@ -25656,35 +25664,45 @@ com.huaweilink.ui.add.AllVHFactory$AppItemVH -> com.huaweilink.ui.add.AllVHFacto
     1:2:void setListeners(android.view.View$OnClickListener,android.view.View$OnLongClickListener):38:39 -> O
     1:1:void setContent(android.content.pm.PackageInfo,boolean,java.lang.Object):31:31 -> P
     2:2:void setContent(android.content.pm.PackageInfo,boolean,java.lang.Object):33:33 -> P
+com.huaweilink.ui.add.RVStateVHFactory -> com.huaweilink.ui.add.RVStateVHFactory:
+    1:1:void <init>():13:13 -> <init>
+    1:1:cbfg.rvadapter.RVHolder createViewHolder(android.view.ViewGroup,int,java.lang.Object):15:15 -> a
+com.huaweilink.ui.add.RVStateVHFactory$createViewHolder$1 -> com.huaweilink.ui.add.RVStateVHFactory$createViewHolder$1:
+    1:1:void <init>(com.huaweilink.ui.add.RVStateVHFactory,android.view.ViewGroup,android.view.View):15:15 -> <init>
+    void setContent(java.lang.Object,boolean,java.lang.Object) -> M
 com.huaweilink.ui.main.MainActivity -> com.huaweilink.ui.main.MainActivity:
     cbfg.rvadapter.RVAdapter adapter -> c
     java.util.HashMap _$_findViewCache -> d
-    1:1:void <init>():19:19 -> <init>
+    1:1:void <init>():20:20 -> <init>
     android.view.View _$_findCachedViewById(int) -> a
-    1:1:cbfg.rvadapter.RVAdapter access$getAdapter$p(com.huaweilink.ui.main.MainActivity):19:19 -> b
-    1:1:void setupList():39:39 -> c
-    2:5:void setupList():41:44 -> c
-    6:6:void setupList():51:51 -> c
-    1:1:void onActivityResult(int,int,android.content.Intent):67:67 -> onActivityResult
-    2:2:void onActivityResult(int,int,android.content.Intent):69:69 -> onActivityResult
-    1:1:void onCreate(android.os.Bundle):27:27 -> onCreate
-    2:3:void onCreate(android.os.Bundle):29:30 -> onCreate
-    1:2:void onStart():34:35 -> onStart
+    1:1:cbfg.rvadapter.RVAdapter access$getAdapter$p(com.huaweilink.ui.main.MainActivity):20:20 -> b
+    1:1:void setupList():48:48 -> c
+    2:5:void setupList():50:53 -> c
+    6:6:void setupList():60:60 -> c
+    1:1:void onActivityResult(int,int,android.content.Intent):76:76 -> onActivityResult
+    2:2:void onActivityResult(int,int,android.content.Intent):78:78 -> onActivityResult
+    1:1:void onCreate(android.os.Bundle):28:28 -> onCreate
+    2:2:void onCreate(android.os.Bundle):38:38 -> onCreate
+    3:4:void onCreate(android.os.Bundle):40:41 -> onCreate
+    5:5:void onCreate(android.os.Bundle):44:44 -> onCreate
 com.huaweilink.ui.main.MainActivity$Companion -> com.huaweilink.ui.main.MainActivity$Companion:
-    1:1:void <init>():22:22 -> <init>
+    1:1:void <init>():23:23 -> <init>
 com.huaweilink.ui.main.MainActivity$onCreate$1 -> com.huaweilink.ui.main.MainActivity$onCreate$1:
     com.huaweilink.ui.main.MainActivity this$0 -> c
-    1:1:void onClick(android.view.View):29:29 -> onClick
+    1:1:void onClick(android.view.View):40:40 -> onClick
+com.huaweilink.ui.main.MainActivity$onCreate$2 -> com.huaweilink.ui.main.MainActivity$onCreate$2:
+    com.huaweilink.ui.main.MainActivity this$0 -> c
+    1:1:void onClick(android.view.View):42:42 -> onClick
 com.huaweilink.ui.main.MainActivity$setupList$1 -> com.huaweilink.ui.main.MainActivity$setupList$1:
     com.huaweilink.ui.main.MainActivity this$0 -> d
-    1:5:void invoke(android.view.View,org.json.JSONObject,int):45:49 -> e
-    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):19:19 -> f
+    1:5:void invoke(android.view.View,org.json.JSONObject,int):54:58 -> e
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):20:20 -> f
 com.huaweilink.ui.main.MainActivity$setupList$2 -> com.huaweilink.ui.main.MainActivity$setupList$2:
     com.huaweilink.ui.main.MainActivity this$0 -> d
-    1:3:void invoke(android.view.View,org.json.JSONObject,int):52:54 -> e
-    4:4:void invoke(android.view.View,org.json.JSONObject,int):57:57 -> e
-    5:7:void invoke(android.view.View,org.json.JSONObject,int):59:61 -> e
-    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):19:19 -> f
+    1:3:void invoke(android.view.View,org.json.JSONObject,int):61:63 -> e
+    4:4:void invoke(android.view.View,org.json.JSONObject,int):66:66 -> e
+    5:7:void invoke(android.view.View,org.json.JSONObject,int):68:70 -> e
+    1:1:java.lang.Object invoke(java.lang.Object,java.lang.Object,java.lang.Object):20:20 -> f
 com.huaweilink.ui.main.MainVHFactory -> com.huaweilink.ui.main.MainVHFactory:
     1:1:void <init>():22:22 -> <init>
     1:1:cbfg.rvadapter.RVHolder createViewHolder(android.view.ViewGroup,int,java.lang.Object):25:25 -> a
@@ -25695,78 +25713,139 @@ com.huaweilink.ui.main.MainVHFactory$AppItemVH -> com.huaweilink.ui.main.MainVHF
     1:1:void setContent(java.lang.Object,boolean,java.lang.Object):28:28 -> M
     1:2:void setListeners(android.view.View$OnClickListener,android.view.View$OnLongClickListener):38:39 -> O
     1:1:void setContent(org.json.JSONObject,boolean,java.lang.Object):34:34 -> P
+com.huaweilink.util.AppExecutors -> com.huaweilink.util.AppExecutors:
+    kotlin.Lazy networkIO$delegate -> b
+    kotlin.Lazy mainThread$delegate -> c
+    com.huaweilink.util.AppExecutors INSTANCE -> d
+    kotlin.Lazy diskIO$delegate -> a
+    1:4:void <clinit>():16:19 -> <clinit>
+    1:1:void <init>():16:16 -> <init>
+    1:1:java.util.concurrent.Executor diskIO():22:22 -> a
+    java.util.concurrent.Executor getDiskIO() -> b
+    java.util.concurrent.Executor getMainThread() -> c
+    1:1:java.util.concurrent.Executor mainThread():30:30 -> d
+com.huaweilink.util.AppExecutors$MainThreadExecutor -> com.huaweilink.util.AppExecutors$MainThreadExecutor:
+    android.os.Handler mainThreadHandler -> a
+    1:2:void <init>():33:34 -> <init>
+    1:1:void execute(java.lang.Runnable):37:37 -> execute
+com.huaweilink.util.AppExecutors$diskIO$2 -> com.huaweilink.util.AppExecutors$diskIO$2:
+    com.huaweilink.util.AppExecutors$diskIO$2 INSTANCE -> d
+    1:1:java.lang.Object invoke():16:16 -> c
+    1:1:java.util.concurrent.ExecutorService invoke():17:17 -> e
+com.huaweilink.util.AppExecutors$mainThread$2 -> com.huaweilink.util.AppExecutors$mainThread$2:
+    com.huaweilink.util.AppExecutors$mainThread$2 INSTANCE -> d
+    1:1:java.lang.Object invoke():16:16 -> c
+    1:1:com.huaweilink.util.AppExecutors$MainThreadExecutor invoke():19:19 -> e
+com.huaweilink.util.AppExecutors$networkIO$2 -> com.huaweilink.util.AppExecutors$networkIO$2:
+    com.huaweilink.util.AppExecutors$networkIO$2 INSTANCE -> d
+    1:1:java.lang.Object invoke():16:16 -> c
+    1:1:java.util.concurrent.ExecutorService invoke():18:18 -> e
 com.huaweilink.util.AppHolder -> com.huaweilink.util.AppHolder:
-    com.huaweilink.util.AppHolder$Companion Companion -> b
     android.app.Application application -> a
+    com.huaweilink.util.AppHolder INSTANCE -> b
+    1:1:void <clinit>():14:14 -> <clinit>
     1:1:void <init>():14:14 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):14:14 -> <init>
     1:1:android.app.Application app():27:27 -> a
     1:1:void init(android.app.Application):23:23 -> b
-com.huaweilink.util.AppHolder$Companion -> com.huaweilink.util.AppHolder$Companion:
-    1:1:void <init>():34:34 -> <init>
-    2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):34:34 -> <init>
-    1:1:com.huaweilink.util.AppHolder get():37:37 -> a
-com.huaweilink.util.AppHolder$SingletonHolder -> com.huaweilink.util.AppHolder$SingletonHolder:
-    com.huaweilink.util.AppHolder INSTANCE -> a
-    com.huaweilink.util.AppHolder$SingletonHolder INSTANCE -> b
-    1:2:void <clinit>():30:31 -> <clinit>
-    1:1:void <init>():30:30 -> <init>
-    1:1:com.huaweilink.util.AppHolder getINSTANCE():31:31 -> a
 com.huaweilink.util.PkgsHolder -> com.huaweilink.util.PkgsHolder:
     android.content.pm.PackageManager packageManager -> d
-    com.huaweilink.util.PkgsHolder INSTANCE -> e
+    com.huaweilink.util.PkgsHolder INSTANCE -> f
+    com.huaweilink.util.PkgsHolder$PkgUpdateObservable livePkgUpdateEvent -> e
     java.util.ArrayList systemApps -> c
     java.util.ArrayList installedApps -> b
     java.util.ArrayList allApps -> a
-    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):20:20 -> <clinit>
-    1:1:void <clinit>():20 -> <clinit>
-    2:4:void <clinit>():21:23 -> <clinit>
-    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):20:20 -> <init>
-    1:1:void <init>():20 -> <init>
-    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):20:20 -> a
-    1:1:android.content.pm.PackageManager access$getPackageManager$p(com.huaweilink.util.PkgsHolder):20 -> a
-    1:1:java.util.List getAllApps():49:49 -> b
-    1:2:java.util.List getInstalledApps():52:53 -> c
-    1:2:java.util.List getSystemApps():59:60 -> d
-    1:3:void setup(android.content.Context):27:29 -> e
-    1:1:void sortApps():66:66 -> f
-    2:2:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> f
-    2:2:void sortApps():75 -> f
-    3:4:void sortApps():67:68 -> f
-    5:5:void sortApps():70:70 -> f
-    1:3:void updateList():34:36 -> g
-    4:5:void updateList():38:39 -> g
-    6:8:void updateList():45:45 -> g
-com.huaweilink.util.PkgsHolder$updateList$comparator$1 -> com.huaweilink.util.PkgsHolder$updateList$comparator$1:
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> <clinit>
+    1:1:void <clinit>():23 -> <clinit>
+    2:4:void <clinit>():24:26 -> <clinit>
+    5:5:void <clinit>():29:29 -> <clinit>
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> <init>
+    1:1:void <init>():23 -> <init>
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> a
+    1:1:java.util.ArrayList access$getAllApps$p(com.huaweilink.util.PkgsHolder):23 -> a
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> b
+    1:1:java.util.ArrayList access$getInstalledApps$p(com.huaweilink.util.PkgsHolder):23 -> b
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> c
+    1:1:com.huaweilink.util.PkgsHolder$PkgUpdateObservable access$getLivePkgUpdateEvent$p(com.huaweilink.util.PkgsHolder):23 -> c
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> d
+    1:1:android.content.pm.PackageManager access$getPackageManager$p(com.huaweilink.util.PkgsHolder):23 -> d
+    1:1:void access$setPackageManager$p(com.huaweilink.util.PkgsHolder,android.content.pm.PackageManager):23:23 -> e
+    1:1:java.util.ArrayList access$getSystemApps$p(com.huaweilink.util.PkgsHolder):23 -> e
+    1:1:java.util.List getAllApps():78:78 -> f
+    1:2:java.util.List getInstalledApps():81:82 -> g
+    1:2:java.util.List getSystemApps():88:89 -> h
+    1:3:void observe(androidx.lifecycle.Lifecycle,java.util.Observer):32:34 -> i
+    1:3:void setup(android.content.Context):48:50 -> j
+    4:4:void setup(android.content.Context):52:52 -> j
+    1:1:void sortApps():95:95 -> k
+    2:2:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> k
+    2:2:void sortApps():111 -> k
+    3:4:void sortApps():96:97 -> k
+    5:5:void sortApps():99:99 -> k
+    1:1:void updateList():57:57 -> l
+com.huaweilink.util.PkgsHolder$PkgUpdateObservable -> com.huaweilink.util.PkgsHolder$PkgUpdateObservable:
+    1:1:void <init>():104:104 -> <init>
+    1:2:void notifyChanged():106:107 -> a
+com.huaweilink.util.PkgsHolder$observe$1 -> com.huaweilink.util.PkgsHolder$observe$1:
+    java.util.Observer $observer -> a
+    1:1:void <init>(java.util.Observer):34:34 -> <init>
+    1:1:void onDestroyed():42:42 -> onDestroyed
+com.huaweilink.util.PkgsHolder$updateList$1 -> com.huaweilink.util.PkgsHolder$updateList$1:
+    com.huaweilink.util.PkgsHolder$updateList$1 INSTANCE -> c
+    1:3:void run():58:60 -> run
+    4:5:void run():62:63 -> run
+    6:7:void run():69:70 -> run
+    8:8:void run():72:72 -> run
+com.huaweilink.util.PkgsHolder$updateList$1$1 -> com.huaweilink.util.PkgsHolder$updateList$1$1:
+    com.huaweilink.util.PkgsHolder$updateList$1$1 INSTANCE -> c
+    1:1:void run():73:73 -> run
+com.huaweilink.util.PkgsHolder$updateList$1$comparator$1 -> com.huaweilink.util.PkgsHolder$updateList$1$comparator$1:
     java.text.Collator $collator -> c
-    1:4:int compare(android.content.pm.PackageInfo,android.content.pm.PackageInfo):40:40 -> a
-    1:1:int compare(java.lang.Object,java.lang.Object):20:20 -> compare
+    1:4:int compare(android.content.pm.PackageInfo,android.content.pm.PackageInfo):64:64 -> a
+    1:1:int compare(java.lang.Object,java.lang.Object):23:23 -> compare
 com.huaweilink.util.SPHelper -> com.huaweilink.util.SPHelper:
-    kotlin.Lazy appItems$delegate -> b
-    com.huaweilink.util.SPHelper INSTANCE -> c
+    kotlin.Lazy sp$delegate -> b
+    kotlin.Lazy appItems$delegate -> c
+    com.huaweilink.util.SPHelper INSTANCE -> d
     kotlin.Lazy collator$delegate -> a
-    1:1:void <clinit>():20:20 -> <clinit>
-    2:3:void <clinit>():22:23 -> <clinit>
-    1:1:void <init>():20:20 -> <init>
-    1:1:java.text.Collator access$getCollator$p(com.huaweilink.util.SPHelper):20:20 -> a
-    java.util.ArrayList getAppItems() -> b
-    java.text.Collator getCollator() -> c
-    1:2:void removeAppItem(org.json.JSONObject):37:38 -> d
-    1:2:void saveAppItems():42:43 -> e
-    3:6:void saveAppItems():45:48 -> e
+    1:1:android.content.SharedPreferences access$getSp$p(com.huaweilink.util.SPHelper):23:23 -> <clinit>
+    1:1:void <clinit>():23 -> <clinit>
+    2:2:void <clinit>():25:25 -> <clinit>
+    3:3:void <clinit>():27:27 -> <clinit>
+    4:4:void <clinit>():33:33 -> <clinit>
+    1:1:android.content.SharedPreferences access$getSp$p(com.huaweilink.util.SPHelper):23:23 -> <init>
+    1:1:void <init>():23 -> <init>
+    1:1:android.content.SharedPreferences access$getSp$p(com.huaweilink.util.SPHelper):23:23 -> a
+    1:1:java.text.Collator access$getCollator$p(com.huaweilink.util.SPHelper):23 -> a
+    1:1:android.content.SharedPreferences access$getSp$p(com.huaweilink.util.SPHelper):23:23 -> b
+    java.util.ArrayList getAppItems() -> c
+    1:1:java.util.List getAppItems():45:45 -> d
+    java.text.Collator getCollator() -> e
+    android.content.SharedPreferences getSp() -> f
+    1:2:void removeAppItem(org.json.JSONObject):48:49 -> g
+    1:3:void saveAppItems():70:72 -> h
+    1:1:void saveSelections(android.content.pm.PackageManager,java.util.Set):53:53 -> i
+    2:2:void saveSelections(android.content.pm.PackageManager,java.util.Set):55:55 -> i
+    3:3:void kotlin.collections.CollectionsKt___CollectionsKt.forEach(java.lang.Iterable,kotlin.jvm.functions.Function1):1819:1819 -> i
+    3:3:void saveSelections(android.content.pm.PackageManager,java.util.Set):75 -> i
+    4:6:void saveSelections(android.content.pm.PackageManager,java.util.Set):61:63 -> i
+    7:7:void saveSelections(android.content.pm.PackageManager,java.util.Set):66:66 -> i
 com.huaweilink.util.SPHelper$appItems$2 -> com.huaweilink.util.SPHelper$appItems$2:
     com.huaweilink.util.SPHelper$appItems$2 INSTANCE -> d
-    1:1:java.lang.Object invoke():20:20 -> c
-    1:3:java.util.ArrayList invoke():24:26 -> e
-    4:6:java.util.ArrayList invoke():28:30 -> e
+    1:1:java.lang.Object invoke():23:23 -> c
+    1:5:java.util.ArrayList invoke():34:38 -> e
 com.huaweilink.util.SPHelper$collator$2 -> com.huaweilink.util.SPHelper$collator$2:
     com.huaweilink.util.SPHelper$collator$2 INSTANCE -> d
-    1:1:java.lang.Object invoke():20:20 -> c
-    1:1:java.text.Collator invoke():22:22 -> e
-com.huaweilink.util.SPHelper$saveAppItems$1 -> com.huaweilink.util.SPHelper$saveAppItems$1:
-    com.huaweilink.util.SPHelper$saveAppItems$1 INSTANCE -> c
-    1:1:int compare(org.json.JSONObject,org.json.JSONObject):43:43 -> a
-    1:1:int compare(java.lang.Object,java.lang.Object):20:20 -> compare
+    1:1:java.lang.Object invoke():23:23 -> c
+    1:1:java.text.Collator invoke():25:25 -> e
+com.huaweilink.util.SPHelper$saveSelections$1 -> com.huaweilink.util.SPHelper$saveSelections$1:
+    android.content.pm.PackageManager $packageManager -> c
+    1:4:int compare(android.content.pm.PackageInfo,android.content.pm.PackageInfo):56:56 -> a
+    1:1:int compare(java.lang.Object,java.lang.Object):23:23 -> compare
+com.huaweilink.util.SPHelper$sp$2 -> com.huaweilink.util.SPHelper$sp$2:
+    com.huaweilink.util.SPHelper$sp$2 INSTANCE -> d
+    1:1:java.lang.Object invoke():23:23 -> c
+    1:1:android.content.SharedPreferences invoke():29:29 -> e
+    2:2:android.content.SharedPreferences invoke():28:28 -> e
 kotlin.DeepRecursiveKt -> kotlin.DeepRecursiveKt:
     java.lang.Object UNDEFINED_RESULT -> a
     1:1:void <clinit>():127:127 -> <clinit>
@@ -26590,30 +26669,31 @@ kotlin.collections.ArrayDeque$Companion -> kotlin.collections.ArrayDeque$Compani
     2:2:void <init>(kotlin.jvm.internal.DefaultConstructorMarker):532:532 -> <init>
     int newCapacity$kotlin_stdlib(int,int) -> a
 kotlin.collections.ArraysKt -> kotlin.collections.ArraysKt:
-    char single(char[]) -> B
-    java.lang.Object singleOrNull(java.lang.Object[]) -> C
-    java.util.HashSet toHashSet(java.lang.Object[]) -> E
+    int lastIndexOf(short[],short) -> A
+    char single(char[]) -> C
+    java.lang.Object singleOrNull(java.lang.Object[]) -> D
+    java.util.HashSet toHashSet(java.lang.Object[]) -> F
     java.lang.Object[] copyInto(java.lang.Object[],java.lang.Object[],int,int,int) -> b
     void fill(int[],int,int,int) -> c
-    boolean contains(byte[],byte) -> e
-    boolean contains(int[],int) -> g
-    boolean contains(long[],long) -> h
-    boolean contains(java.lang.Object[],java.lang.Object) -> i
-    boolean contains(short[],short) -> j
-    int indexOf(byte[],byte) -> m
-    int indexOf(int[],int) -> o
-    int indexOf(long[],long) -> p
-    int indexOf(short[],short) -> r
-    java.lang.Appendable joinTo$default(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> u
-    int lastIndexOf(byte[],byte) -> v
-    int lastIndexOf(int[],int) -> x
-    int lastIndexOf(long[],long) -> y
-    int lastIndexOf(short[],short) -> z
+    boolean contains(byte[],byte) -> f
+    boolean contains(int[],int) -> h
+    boolean contains(long[],long) -> i
+    boolean contains(java.lang.Object[],java.lang.Object) -> j
+    boolean contains(short[],short) -> k
+    int indexOf(byte[],byte) -> n
+    int indexOf(int[],int) -> p
+    int indexOf(long[],long) -> q
+    int indexOf(short[],short) -> s
+    java.lang.Appendable joinTo$default(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> v
+    int lastIndexOf(byte[],byte) -> w
+    int lastIndexOf(int[],int) -> y
+    int lastIndexOf(long[],long) -> z
 kotlin.collections.ArraysKt___ArraysJvmKt -> kotlin.collections.ArraysKt___ArraysJvmKt:
     1:1:java.util.List asList(java.lang.Object[]):133:133 -> a
     1:1:java.lang.Object[] copyInto(java.lang.Object[],java.lang.Object[],int,int,int):1247:1247 -> b
     1:1:void fill(int[],int,int,int):1956:1956 -> c
     1:1:void fill(java.lang.Object[],java.lang.Object,int,int):1914:1914 -> d
+    1:1:void sortWith(java.lang.Object[],java.util.Comparator):2557:2557 -> e
 kotlin.collections.ArraysKt___ArraysJvmKt$asList$1 -> kotlin.collections.ArraysKt___ArraysJvmKt$asList$1:
     byte[] $this_asList -> d
     1:1:int getSize():141:141 -> a
@@ -26745,39 +26825,39 @@ kotlin.collections.ArraysKt___ArraysJvmKt$asList$8 -> kotlin.collections.ArraysK
     1:1:boolean isEmpty():240:240 -> isEmpty
     1:1:int lastIndexOf(java.lang.Object):238:238 -> lastIndexOf
 kotlin.collections.ArraysKt___ArraysKt -> kotlin.collections.ArraysKt___ArraysKt:
-    1:2:int lastIndexOf(boolean[],boolean):2154:2155 -> A
-    1:1:char single(char[]):2860:2860 -> B
-    2:3:char single(char[]):2862:2863 -> B
-    4:4:char single(char[]):2861:2861 -> B
-    1:1:java.lang.Object singleOrNull(java.lang.Object[]):3033:3033 -> C
-    1:2:java.util.Collection toCollection(java.lang.Object[],java.util.Collection):9755:9756 -> D
-    1:1:java.util.HashSet toHashSet(java.lang.Object[]):9845:9845 -> E
-    1:1:boolean contains(byte[],byte):526:526 -> e
-    1:1:boolean contains(char[],char):581:581 -> f
-    1:1:boolean contains(int[],int):540:540 -> g
-    1:1:boolean contains(long[],long):547:547 -> h
-    1:1:boolean contains(java.lang.Object[],java.lang.Object):519:519 -> i
-    1:1:boolean contains(short[],short):533:533 -> j
-    1:1:boolean contains(boolean[],boolean):574:574 -> k
-    1:1:int getLastIndex(java.lang.Object[]):8017:8017 -> l
-    1:2:int indexOf(byte[],byte):1490:1491 -> m
-    1:2:int indexOf(char[],char):1578:1579 -> n
-    1:2:int indexOf(int[],int):1514:1515 -> o
-    1:2:int indexOf(long[],long):1526:1527 -> p
-    1:2:int indexOf(java.lang.Object[],java.lang.Object):1471:1472 -> q
-    3:4:int indexOf(java.lang.Object[],java.lang.Object):1477:1478 -> q
-    1:2:int indexOf(short[],short):1502:1503 -> r
-    1:2:int indexOf(boolean[],boolean):1566:1567 -> s
-    1:1:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23097:23097 -> t
-    2:3:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23099:23100 -> t
-    4:4:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23102:23102 -> t
-    5:6:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23105:23106 -> t
-    1:1:java.lang.Appendable joinTo$default(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object):23096:23096 -> u
-    1:2:int lastIndexOf(byte[],byte):2078:2079 -> v
-    1:2:int lastIndexOf(char[],char):2166:2167 -> w
-    1:2:int lastIndexOf(int[],int):2102:2103 -> x
-    1:2:int lastIndexOf(long[],long):2114:2115 -> y
-    1:2:int lastIndexOf(short[],short):2090:2091 -> z
+    1:2:int lastIndexOf(short[],short):2090:2091 -> A
+    1:2:int lastIndexOf(boolean[],boolean):2154:2155 -> B
+    1:1:char single(char[]):2860:2860 -> C
+    2:3:char single(char[]):2862:2863 -> C
+    4:4:char single(char[]):2861:2861 -> C
+    1:1:java.lang.Object singleOrNull(java.lang.Object[]):3033:3033 -> D
+    1:2:java.util.Collection toCollection(java.lang.Object[],java.util.Collection):9755:9756 -> E
+    1:1:java.util.HashSet toHashSet(java.lang.Object[]):9845:9845 -> F
+    1:1:boolean contains(byte[],byte):526:526 -> f
+    1:1:boolean contains(char[],char):581:581 -> g
+    1:1:boolean contains(int[],int):540:540 -> h
+    1:1:boolean contains(long[],long):547:547 -> i
+    1:1:boolean contains(java.lang.Object[],java.lang.Object):519:519 -> j
+    1:1:boolean contains(short[],short):533:533 -> k
+    1:1:boolean contains(boolean[],boolean):574:574 -> l
+    1:1:int getLastIndex(java.lang.Object[]):8017:8017 -> m
+    1:2:int indexOf(byte[],byte):1490:1491 -> n
+    1:2:int indexOf(char[],char):1578:1579 -> o
+    1:2:int indexOf(int[],int):1514:1515 -> p
+    1:2:int indexOf(long[],long):1526:1527 -> q
+    1:2:int indexOf(java.lang.Object[],java.lang.Object):1471:1472 -> r
+    3:4:int indexOf(java.lang.Object[],java.lang.Object):1477:1478 -> r
+    1:2:int indexOf(short[],short):1502:1503 -> s
+    1:2:int indexOf(boolean[],boolean):1566:1567 -> t
+    1:1:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23097:23097 -> u
+    2:3:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23099:23100 -> u
+    4:4:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23102:23102 -> u
+    5:6:java.lang.Appendable joinTo(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):23105:23106 -> u
+    1:1:java.lang.Appendable joinTo$default(java.lang.Object[],java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object):23096:23096 -> v
+    1:2:int lastIndexOf(byte[],byte):2078:2079 -> w
+    1:2:int lastIndexOf(char[],char):2166:2167 -> x
+    1:2:int lastIndexOf(int[],int):2102:2103 -> y
+    1:2:int lastIndexOf(long[],long):2114:2115 -> z
 kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$1 -> kotlin.collections.ArraysKt___ArraysKt$asIterable$$inlined$Iterable$1:
     java.lang.Object[] $this_asIterable$inlined -> c
     1:1:java.lang.Iterable kotlin.collections.ArraysKt___ArraysKt.asIterable(java.lang.Object[]):23423:23423 -> iterator
@@ -26905,22 +26985,23 @@ kotlin.collections.CharIterator -> kotlin.collections.CharIterator:
     char nextChar() -> b
     1:1:java.lang.Object next():19:19 -> next
 kotlin.collections.CollectionsKt -> kotlin.collections.CollectionsKt:
-    java.lang.Object single(java.lang.Iterable) -> A
-    java.lang.Object singleOrNull(java.util.List) -> C
+    java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> A
+    java.lang.Object single(java.lang.Iterable) -> B
+    java.lang.Object singleOrNull(java.util.List) -> D
+    java.util.List sortedWith(java.lang.Iterable,java.util.Comparator) -> E
     java.util.List listOf(java.lang.Object) -> b
     kotlin.ranges.IntRange getIndices(java.util.Collection) -> d
     java.util.List listOf(java.lang.Object[]) -> f
-    void throwCountOverflow() -> g
-    void throwIndexOverflow() -> h
-    int collectionSizeOrDefault(java.lang.Iterable,int) -> i
-    java.util.Collection convertToSetForSetOperation(java.lang.Iterable) -> j
-    void sort(java.util.List) -> l
-    void sortWith(java.util.List,java.util.Comparator) -> m
-    java.lang.Object removeLast(java.util.List) -> n
-    java.util.List filterIsInstance(java.lang.Iterable,java.lang.Class) -> s
-    kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> u
-    java.lang.Object elementAt(java.lang.Iterable,int) -> v
-    java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object) -> z
+    void throwCountOverflow() -> h
+    void throwIndexOverflow() -> i
+    int collectionSizeOrDefault(java.lang.Iterable,int) -> j
+    java.util.Collection convertToSetForSetOperation(java.lang.Iterable) -> k
+    void sort(java.util.List) -> m
+    void sortWith(java.util.List,java.util.Comparator) -> n
+    java.lang.Object removeLast(java.util.List) -> o
+    java.util.List filterIsInstance(java.lang.Iterable,java.lang.Class) -> t
+    kotlin.sequences.Sequence asSequence(java.lang.Iterable) -> v
+    java.lang.Object elementAt(java.lang.Iterable,int) -> w
 kotlin.collections.CollectionsKt__CollectionsJVMKt -> kotlin.collections.CollectionsKt__CollectionsJVMKt:
     1:1:java.lang.Object[] copyToArrayOfAny(java.lang.Object[],boolean):93:93 -> a
     2:2:java.lang.Object[] copyToArrayOfAny(java.lang.Object[],boolean):97:97 -> a
@@ -26931,17 +27012,20 @@ kotlin.collections.CollectionsKt__CollectionsKt -> kotlin.collections.Collection
     1:1:kotlin.ranges.IntRange getIndices(java.util.Collection):213:213 -> d
     1:1:int getLastIndex(java.util.List):221:221 -> e
     1:1:java.util.List listOf(java.lang.Object[]):77:77 -> f
-    1:1:void throwCountOverflow():465:465 -> g
-    1:1:void throwIndexOverflow():461:461 -> h
+    1:1:java.util.List optimizeReadOnlyList(java.util.List):289:289 -> g
+    2:2:java.util.List optimizeReadOnlyList(java.util.List):291:291 -> g
+    3:3:java.util.List optimizeReadOnlyList(java.util.List):290:290 -> g
+    1:1:void throwCountOverflow():465:465 -> h
+    1:1:void throwIndexOverflow():461:461 -> i
 kotlin.collections.CollectionsKt__CollectionsKt$binarySearchBy$1 -> kotlin.collections.CollectionsKt__CollectionsKt$binarySearchBy$1:
     java.lang.Comparable $key -> e
     kotlin.jvm.functions.Function1 $selector -> d
     1:1:int invoke(java.lang.Object):390:390 -> e
     java.lang.Object invoke(java.lang.Object) -> i
 kotlin.collections.CollectionsKt__IterablesKt -> kotlin.collections.CollectionsKt__IterablesKt:
-    1:1:int collectionSizeOrDefault(java.lang.Iterable,int):39:39 -> i
-    1:3:java.util.Collection convertToSetForSetOperation(java.lang.Iterable):59:61 -> j
-    1:1:boolean safeToConvertToSet$CollectionsKt__IterablesKt(java.util.Collection):42:42 -> k
+    1:1:int collectionSizeOrDefault(java.lang.Iterable,int):39:39 -> j
+    1:3:java.util.Collection convertToSetForSetOperation(java.lang.Iterable):59:61 -> k
+    1:1:boolean safeToConvertToSet$CollectionsKt__IterablesKt(java.util.Collection):42:42 -> l
 kotlin.collections.CollectionsKt__IterablesKt$Iterable$1 -> kotlin.collections.CollectionsKt__IterablesKt$Iterable$1:
     kotlin.jvm.functions.Function0 $iterator -> c
     1:1:java.util.Iterator iterator():17:17 -> iterator
@@ -26950,41 +27034,53 @@ kotlin.collections.CollectionsKt__IteratorsJVMKt$iterator$1 -> kotlin.collection
     1:1:boolean hasNext():16:16 -> hasNext
     1:1:java.lang.Object next():18:18 -> next
 kotlin.collections.CollectionsKt__MutableCollectionsJVMKt -> kotlin.collections.CollectionsKt__MutableCollectionsJVMKt:
-    1:1:void sort(java.util.List):31:31 -> l
-    1:1:void sortWith(java.util.List,java.util.Comparator):42:42 -> m
+    1:1:void sort(java.util.List):31:31 -> m
+    1:1:void sortWith(java.util.List,java.util.Comparator):42:42 -> n
 kotlin.collections.CollectionsKt__MutableCollectionsKt -> kotlin.collections.CollectionsKt__MutableCollectionsKt:
-    1:1:java.lang.Object removeLast(java.util.List):255:255 -> n
+    1:1:java.lang.Object removeLast(java.util.List):255:255 -> o
 kotlin.collections.CollectionsKt__ReversedViewsKt -> kotlin.collections.CollectionsKt__ReversedViewsKt:
-    1:1:int access$reverseElementIndex(java.util.List,int) -> o
-    1:1:int access$reversePositionIndex(java.util.List,int) -> p
-    1:1:int reverseElementIndex$CollectionsKt__ReversedViewsKt(java.util.List,int):30:30 -> q
-    1:1:int reversePositionIndex$CollectionsKt__ReversedViewsKt(java.util.List,int):33:33 -> r
+    1:1:int access$reverseElementIndex(java.util.List,int) -> p
+    1:1:int access$reversePositionIndex(java.util.List,int) -> q
+    1:1:int reverseElementIndex$CollectionsKt__ReversedViewsKt(java.util.List,int):30:30 -> r
+    1:1:int reversePositionIndex$CollectionsKt__ReversedViewsKt(java.util.List,int):33:33 -> s
 kotlin.collections.CollectionsKt___CollectionsJvmKt -> kotlin.collections.CollectionsKt___CollectionsJvmKt:
-    1:1:java.util.List filterIsInstance(java.lang.Iterable,java.lang.Class):25:25 -> s
-    1:1:java.util.Collection filterIsInstanceTo(java.lang.Iterable,java.util.Collection,java.lang.Class):35:35 -> t
+    1:1:java.util.List filterIsInstance(java.lang.Iterable,java.lang.Class):25:25 -> t
+    1:1:java.util.Collection filterIsInstanceTo(java.lang.Iterable,java.util.Collection,java.lang.Class):35:35 -> u
 kotlin.collections.CollectionsKt___CollectionsKt -> kotlin.collections.CollectionsKt___CollectionsKt:
-    1:1:java.lang.Object single(java.lang.Iterable):558:558 -> A
-    2:3:java.lang.Object single(java.lang.Iterable):560:561 -> A
-    4:6:java.lang.Object single(java.lang.Iterable):563:565 -> A
-    7:7:java.lang.Object single(java.lang.Iterable):562:562 -> A
-    1:1:java.lang.Object single(java.util.List):575:575 -> B
-    2:3:java.lang.Object single(java.util.List):577:578 -> B
-    4:4:java.lang.Object single(java.util.List):576:576 -> B
-    1:1:java.lang.Object singleOrNull(java.util.List):622:622 -> C
-    1:2:java.util.Collection toCollection(java.lang.Iterable,java.util.Collection):1263:1264 -> D
-    1:1:java.util.HashSet toHashSet(java.lang.Iterable):1273:1273 -> E
-    1:1:kotlin.sequences.Sequence asSequence(java.lang.Iterable):3358:3358 -> u
-    1:3:java.lang.Object elementAt(java.lang.Iterable,int):85:87 -> v
-    1:2:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):106:107 -> w
-    3:4:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):109:110 -> w
-    5:6:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):112:113 -> w
-    7:7:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):117:117 -> w
-    1:1:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3319:3319 -> x
-    2:3:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3321:3322 -> x
-    4:4:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3324:3324 -> x
-    5:6:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3327:3328 -> x
-    1:1:java.lang.String joinToString(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3341:3341 -> y
-    1:1:java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object):3340:3340 -> z
+    1:1:java.lang.String joinToString$default(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1,int,java.lang.Object):3340:3340 -> A
+    1:1:java.lang.Object single(java.lang.Iterable):558:558 -> B
+    2:3:java.lang.Object single(java.lang.Iterable):560:561 -> B
+    4:6:java.lang.Object single(java.lang.Iterable):563:565 -> B
+    7:7:java.lang.Object single(java.lang.Iterable):562:562 -> B
+    1:1:java.lang.Object single(java.util.List):575:575 -> C
+    2:3:java.lang.Object single(java.util.List):577:578 -> C
+    4:4:java.lang.Object single(java.util.List):576:576 -> C
+    1:1:java.lang.Object singleOrNull(java.util.List):622:622 -> D
+    1:2:java.util.List sortedWith(java.lang.Iterable,java.util.Comparator):1040:1041 -> E
+    3:3:java.lang.Object[] kotlin.collections.ArraysKt__ArraysJVMKt.toTypedArray(java.util.Collection):38:38 -> E
+    3:3:java.util.List sortedWith(java.lang.Iterable,java.util.Comparator):3553 -> E
+    4:4:java.util.List sortedWith(java.lang.Iterable,java.util.Comparator):1043:1043 -> E
+    5:5:java.util.List sortedWith(java.lang.Iterable,java.util.Comparator):1045:1045 -> E
+    1:2:java.util.Collection toCollection(java.lang.Iterable,java.util.Collection):1263:1264 -> F
+    1:1:java.util.HashSet toHashSet(java.lang.Iterable):1273:1273 -> G
+    1:2:java.util.List toList(java.lang.Iterable):1280:1281 -> H
+    3:3:java.util.List toList(java.lang.Iterable):1284:1284 -> H
+    4:4:java.util.List toList(java.lang.Iterable):1283:1283 -> H
+    5:5:java.util.List toList(java.lang.Iterable):1282:1282 -> H
+    6:6:java.util.List toList(java.lang.Iterable):1287:1287 -> H
+    1:3:java.util.List toMutableList(java.lang.Iterable):1294:1296 -> I
+    1:1:java.util.List toMutableList(java.util.Collection):1303:1303 -> J
+    1:1:kotlin.sequences.Sequence asSequence(java.lang.Iterable):3358:3358 -> v
+    1:3:java.lang.Object elementAt(java.lang.Iterable,int):85:87 -> w
+    1:2:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):106:107 -> x
+    3:4:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):109:110 -> x
+    5:6:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):112:113 -> x
+    7:7:java.lang.Object elementAtOrElse(java.lang.Iterable,int,kotlin.jvm.functions.Function1):117:117 -> x
+    1:1:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3319:3319 -> y
+    2:3:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3321:3322 -> y
+    4:4:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3324:3324 -> y
+    5:6:java.lang.Appendable joinTo(java.lang.Iterable,java.lang.Appendable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3327:3328 -> y
+    1:1:java.lang.String joinToString(java.lang.Iterable,java.lang.CharSequence,java.lang.CharSequence,java.lang.CharSequence,int,java.lang.CharSequence,kotlin.jvm.functions.Function1):3341:3341 -> z
 kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1 -> kotlin.collections.CollectionsKt___CollectionsKt$asSequence$$inlined$Sequence$1:
     java.lang.Iterable $this_asSequence$inlined -> a
     1:1:void kotlin.sequences.SequencesKt__SequencesKt$Sequence$1.<init>(kotlin.jvm.functions.Function0):21:21 -> <init>
