@@ -31,14 +31,12 @@ class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        PkgsHolder.setup(this)
-        setupList()
-    }
 
-    private fun setupList() {
         adapter = RVAdapter<PackageInfo>(this, AllVHFactory(packageManager))
             .bind(rvApps)
             .setSelectable(PackageInfo::class.java, SelectStrategy.MULTI_SELECTABLE)
+            .setStateHolderFactory(RVStateVHFactory())
+            .also { it.showStatePage(1) }
             .setItemClickListener { _, item, index ->
                 if (adapter.getSelections().contains(item)) {
                     adapter.deselectAt(index)
@@ -52,6 +50,8 @@ class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
             adapter.setItems(getAppsByFilter())
             refreshSelections()
         }
+
+        PkgsHolder.setup(this)
     }
 
     /**

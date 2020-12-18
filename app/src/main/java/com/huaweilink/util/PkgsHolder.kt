@@ -29,12 +29,14 @@ object PkgsHolder {
     private val livePkgUpdateEvent = PkgUpdateObservable()
 
     fun observe(lifecycle: Lifecycle, observer: Observer) {
+        livePkgUpdateEvent.deleteObservers()
+        livePkgUpdateEvent.addObserver(observer)
         lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+            //这里的 onCreated() 不是立即执行的，当外面数据变化了，这里还没执行到的话会导致数据没有更新:
+            /*@OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
             fun onCreated() {
                 livePkgUpdateEvent.addObserver(observer)
-            }
-
+            }*/
             @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
             fun onDestroyed() {
                 livePkgUpdateEvent.deleteObserver(observer)
