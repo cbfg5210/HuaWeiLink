@@ -33,7 +33,7 @@ class AllAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_app)
 
-        title = "添加到快捷入口列表"
+        title = "编辑快捷入口"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         PkgsHolder.setup(this)
