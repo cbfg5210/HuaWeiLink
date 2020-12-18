@@ -24,18 +24,14 @@ import org.json.JSONObject
  * 修改时间：2019/10/8 11:08
  * 修改内容：
  */
-class AllAppActivity : AppCompatActivity() {
+class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
     private lateinit var adapter: RVAdapter<PackageInfo>
     private var hasChanged = false
     private var currentFilter = R.id.actionAllApps
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_all_app)
-
-        title = "编辑快捷入口"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         PkgsHolder.setup(this)
         setupList()
     }
