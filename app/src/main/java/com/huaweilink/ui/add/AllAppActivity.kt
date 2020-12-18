@@ -36,6 +36,7 @@ class AllAppActivity : AppCompatActivity() {
         title = "添加到快捷入口列表"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        PkgsHolder.setup(this)
         setupList()
     }
 
@@ -56,14 +57,31 @@ class AllAppActivity : AppCompatActivity() {
         refreshSelections()
     }
 
+    /**
+     * 刷新选中项，
+     * 如果还没有选中过，通过保存的数据刷新
+     * 如果已有选中，从列表中取出选中的数据进行刷新
+     */
     private fun refreshSelections() {
-        if (SPHelper.appItems.isEmpty()) {
-            return
+        val selections = adapter.getSelections()
+        val pkgs = if (selections.isEmpty()) {
+            val size = SPHelper.appItems.size
+            if (size == 0) {
+                return
+            }
+            Array<String>(size) { i -> SPHelper.appItems[i].optString(AppConst.APP_PKG) }
+        } else {
+            Array<String>(selections.size) { i -> selections.elementAt(i).packageName }.also {
+                //清空选中项，避免后续重复选中：
+                adapter.setSelectable(selectable = true, clearSelections = true, needNotify = false)
+            }
         }
-        val pkgs = Array<String>(SPHelper.appItems.size) { i -> SPHelper.appItems[i].optString(AppConst.APP_PKG) }
-        PkgsHolder.getAllApps().forEach {
-            if (pkgs.contains(it.packageName)) {
-                adapter.select(it)
+
+        if (pkgs.isNotEmpty()) {
+            PkgsHolder.getAllApps().forEach {
+                if (pkgs.contains(it.packageName)) {
+                    adapter.select(it)
+                }
             }
         }
     }

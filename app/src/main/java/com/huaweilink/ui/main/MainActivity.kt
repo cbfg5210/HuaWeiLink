@@ -27,10 +27,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         vgMainRoot.setOnClickListener { finish() }
-        ivEditLinks.setOnClickListener {
-            PkgsHolder.setup(this)
-            startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE)
-        }
+        ivEditLinks.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
 
         setupList()
     }
@@ -40,6 +37,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         adapter = RVAdapter<JSONObject>(this, MainVHFactory())
                 .bind(rvLinks)
+                .setItems(SPHelper.appItems)
                 .setItemLongClickListener { _, item, _ ->
                     val pkgName = item.optString(AppConst.APP_PKG)
                     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -60,19 +58,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 finish()
                             }
                 }
-
-        refreshList()
-    }
-
-    private fun refreshList() {
-        adapter.setItems(SPHelper.appItems)
-        adapter.notifyDataSetChanged()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_CODE && resultCode == Activity.RESULT_OK) {
-            refreshList()
+            adapter.setItems(SPHelper.appItems)
         }
     }
 }
