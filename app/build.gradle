@@ -11,8 +11,8 @@ android {
         applicationId "com.huaweilink"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1.0"
 
         resConfigs "zh-rCN"
     }
@@ -75,7 +75,7 @@ android {
         variant.outputs.all { output ->
             if (variant.buildType.name == 'release') {
                 def date = new SimpleDateFormat("MMddHHmm").format(System.currentTimeMillis())
-                outputFileName = "HuaWeiLink_v${output.versionNameOverride}_${output.versionCodeOverride}_${date}.apk"
+                outputFileName = "HuaWeiLink_v${output.versionNameOverride}_${date}.apk"
             }
         }
     }
