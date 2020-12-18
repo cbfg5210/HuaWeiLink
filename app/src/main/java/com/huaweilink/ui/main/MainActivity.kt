@@ -2,10 +2,10 @@ package com.huaweilink.ui.main
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import cbfg.rvadapter.RVAdapter
@@ -16,6 +16,7 @@ import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
+
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private lateinit var adapter: RVAdapter<JSONObject>
 
@@ -24,15 +25,21 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.navigationBarColor = Color.TRANSPARENT
+        //window.statusBarColor = Color.TRANSPARENT
+        /*window.decorView.systemUiVisibility =
+                //View.SYSTEM_UI_FLAG_FULLSCREEN or
+                //View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+                //View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+                View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION*/
+
         super.onCreate(savedInstanceState)
 
+        vgMainRoot.setOnClickListener { finish() }
         ivEditLinks.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
         setupList()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     private fun setupList() {

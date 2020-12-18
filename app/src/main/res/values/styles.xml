@@ -12,12 +12,11 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
 
         <!--以下两句的效果是一样的,使用其中之一即可-->
         <!--<item name="android:statusBarColor">@android:color/transparent</item>-->
         <item name="android:windowTranslucentStatus">true</item>
-
-        <item name="android:windowIsFloating">true</item>
     </style>
 </resources>

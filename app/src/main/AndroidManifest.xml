@@ -14,6 +14,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ui.main.MainActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/MainTheme">
             <intent-filter>
@@ -23,6 +24,7 @@
         </activity>
         <activity
             android:name=".ui.add.AllAppActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait" />
     </application>
 
