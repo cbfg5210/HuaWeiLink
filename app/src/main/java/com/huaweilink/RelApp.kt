@@ -15,6 +15,6 @@ import com.huaweilink.util.AppHolder
 class RelApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        AppHolder.get().init(this)
+        AppHolder.init(this)
     }
 }

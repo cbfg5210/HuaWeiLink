@@ -38,7 +38,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         super.onCreate(savedInstanceState)
 
         vgMainRoot.setOnClickListener { finish() }
-        ivEditLinks.setOnClickListener { startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE) }
+        ivEditLinks.setOnClickListener {
+            startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE)
+        }
         setupList()
     }
 
@@ -46,34 +48,34 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         rvLinks.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
 
         adapter = RVAdapter<JSONObject>(this, MainVHFactory())
-                .bind(rvLinks)
-                .setItems(SPHelper.appItems)
-                .setItemLongClickListener { _, item, _ ->
-                    val pkgName = item.optString(AppConst.APP_PKG)
-                    val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            .setData(Uri.fromParts("package", pkgName, null))
-                    startActivity(intent)
+            .bind(rvLinks)
+            .setItems(SPHelper.getAppItems())
+            .setItemLongClickListener { _, item, _ ->
+                val pkgName = item.optString(AppConst.APP_PKG)
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    .setData(Uri.fromParts("package", pkgName, null))
+                startActivity(intent)
+            }
+            .setItemClickListener { view, item, position ->
+                if (view.id == R.id.ivDelete) {
+                    SPHelper.removeAppItem(item)
+                    adapter.removeAt(position)
+                    return@setItemClickListener
                 }
-                .setItemClickListener { view, item, position ->
-                    if (view.id == R.id.ivDelete) {
-                        SPHelper.removeAppItem(item)
-                        adapter.removeAt(position)
-                        return@setItemClickListener
+                packageManager.getLaunchIntentForPackage(item.optString(AppConst.APP_PKG))
+                    ?.run {
+                        this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        startActivity(this)
+                        finish()
                     }
-                    packageManager.getLaunchIntentForPackage(item.optString(AppConst.APP_PKG))
-                            ?.run {
-                                this.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                startActivity(this)
-                                finish()
-                            }
-                }
+            }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_CODE && resultCode == Activity.RESULT_OK) {
-            adapter.setItems(SPHelper.appItems)
+            adapter.setItems(SPHelper.getAppItems())
         }
     }
 }

@@ -1,5 +1,8 @@
 package com.huaweilink.util
 
+import android.content.SharedPreferences
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.preference.PreferenceManager
 import com.huaweilink.constant.AppConst
 import org.json.JSONArray
@@ -20,31 +23,52 @@ import kotlin.collections.ArrayList
 object SPHelper {
     private const val KEY_ITEMS = "items"
     private val collator: Collator by lazy { Collator.getInstance(Locale.CHINA) }
-    val appItems: ArrayList<JSONObject> by lazy {
+
+    private val sp: SharedPreferences by lazy {
+        PreferenceManager.getDefaultSharedPreferences(
+            AppHolder.app()
+        )
+    }
+
+    private val appItems: ArrayList<JSONObject> by lazy {
         val items = ArrayList<JSONObject>()
-        PreferenceManager.getDefaultSharedPreferences(AppHolder.get().app())
-                .getString(KEY_ITEMS, null)
-                ?.run {
-                    val array = JSONArray(this)
-                    for (i in 0 until array.length()) {
-                        items.add(array.getJSONObject(i))
-                    }
-                }
+        sp.getString(KEY_ITEMS, null)?.run {
+            val array = JSONArray(this)
+            for (i in 0 until array.length()) {
+                items.add(array.getJSONObject(i))
+            }
+        }
         items
     }
+
+
+    fun getAppItems(): List<JSONObject> = appItems
 
     fun removeAppItem(item: JSONObject) {
         appItems.remove(item)
         saveAppItems()
     }
 
-    fun saveAppItems() {
-        if (appItems.size > 1) {
-            appItems.sortWith { o1, o2 -> collator.compare(o1.optString(AppConst.APP_NAME), o2.optString(AppConst.APP_NAME)) }
+    fun saveSelections(packageManager: PackageManager, selections: Set<PackageInfo>) {
+        appItems.clear()
+
+        selections.sortedWith { o1, o2 ->
+            collator.compare(
+                o1.applicationInfo.loadLabel(packageManager),
+                o2.applicationInfo.loadLabel(packageManager)
+            )
+        }.forEach { item ->
+            JSONObject().also { appItems.add(it) }
+                .put(AppConst.APP_NAME, item.applicationInfo.loadLabel(packageManager))
+                .put(AppConst.APP_PKG, item.packageName)
         }
-        PreferenceManager.getDefaultSharedPreferences(AppHolder.get().app())
-                .edit()
-                .putString(KEY_ITEMS, appItems.toString())
-                .apply()
+
+        saveAppItems()
+    }
+
+    private fun saveAppItems() {
+        sp.edit()
+            .putString(KEY_ITEMS, appItems.toString())
+            .apply()
     }
 }

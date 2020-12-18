@@ -13,7 +13,6 @@ import com.huaweilink.constant.AppConst
 import com.huaweilink.util.PkgsHolder
 import com.huaweilink.util.SPHelper
 import kotlinx.android.synthetic.main.activity_all_app.*
-import org.json.JSONObject
 
 /**
  * 添加人：  Tom Hawk
@@ -38,19 +37,21 @@ class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
 
     private fun setupList() {
         adapter = RVAdapter<PackageInfo>(this, AllVHFactory(packageManager))
-                .bind(rvApps)
-                .setSelectable(PackageInfo::class.java, SelectStrategy.MULTI_SELECTABLE)
-                .setItems(PkgsHolder.getAllApps())
-                .setItemClickListener { _, item, index ->
-                    if (adapter.getSelections().contains(item)) {
-                        adapter.deselectAt(index)
-                    } else {
-                        adapter.selectAt(index)
-                    }
-                    hasChanged = true
+            .bind(rvApps)
+            .setSelectable(PackageInfo::class.java, SelectStrategy.MULTI_SELECTABLE)
+            .setItemClickListener { _, item, index ->
+                if (adapter.getSelections().contains(item)) {
+                    adapter.deselectAt(index)
+                } else {
+                    adapter.selectAt(index)
                 }
+                hasChanged = true
+            }
 
-        refreshSelections()
+        PkgsHolder.observe(lifecycle) { _, _ ->
+            adapter.setItems(getAppsByFilter())
+            refreshSelections()
+        }
     }
 
     /**
@@ -61,11 +62,11 @@ class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
     private fun refreshSelections() {
         val selections = adapter.getSelections()
         val pkgs = if (selections.isEmpty()) {
-            val size = SPHelper.appItems.size
-            if (size == 0) {
+            val appItems = SPHelper.getAppItems()
+            if (appItems.isEmpty()) {
                 return
             }
-            Array<String>(size) { i -> SPHelper.appItems[i].optString(AppConst.APP_PKG) }
+            Array<String>(appItems.size) { i -> appItems[i].optString(AppConst.APP_PKG) }
         } else {
             Array<String>(selections.size) { i -> selections.elementAt(i).packageName }.also {
                 //清空选中项，避免后续重复选中：
@@ -88,50 +89,33 @@ class AllAppActivity : AppCompatActivity(R.layout.activity_all_app) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
-            onBackPressed()
-            return true
+        when (item.itemId) {
+            android.R.id.home -> onBackPressed()
+            R.id.actionRefresh -> PkgsHolder.updateList()
+            R.id.menuFilter -> return true
+            else -> {
+                item.isChecked = true
+                currentFilter = item.itemId
+                adapter.setItems(getAppsByFilter(), false)
+            }
         }
-        if (item.itemId == R.id.menuFilter) {
-            return true
-        }
-        currentFilter = if (item.itemId == R.id.actionRefresh) {
-            //Note：updateList() 如果不  refreshSelections()，会显示没有选中任何项
-            PkgsHolder.updateList()
-            refreshSelections()
-            currentFilter
-        } else {
-            item.isChecked = true
-            item.itemId
-        }
-        val items = when (currentFilter) {
+        return true
+    }
+
+    private fun getAppsByFilter(): List<PackageInfo> {
+        return when (currentFilter) {
             R.id.actionAllApps -> PkgsHolder.getAllApps()
             R.id.actionSimpleApps -> PkgsHolder.getInstalledApps()
             R.id.actionSystemApps -> PkgsHolder.getSystemApps()
-            else -> return true
+            else -> throw IllegalArgumentException("Parameter 'currentFilter' is illegal!")
         }
-        adapter.setItems(items, false)
-
-        return true
     }
 
     override fun onBackPressed() {
         if (hasChanged) {
-            saveSelections()
+            SPHelper.saveSelections(packageManager, adapter.getSelections())
             setResult(Activity.RESULT_OK)
         }
         finish()
-    }
-
-    private fun saveSelections() {
-        SPHelper.appItems.clear()
-
-        adapter.getSelections().forEach { selection ->
-            JSONObject().put(AppConst.APP_NAME, selection.applicationInfo.loadLabel(packageManager))
-                    .put(AppConst.APP_PKG, selection.packageName)
-                    .run { SPHelper.appItems.add(this) }
-        }
-
-        SPHelper.saveAppItems()
     }
 }

@@ -11,7 +11,7 @@ import android.app.Application
  * 修改时间：2018/9/12 17:06
  * 修改内容：
  */
-class AppHolder private constructor() {
+object AppHolder {
     private lateinit var application: Application
 
     /**
@@ -25,16 +25,5 @@ class AppHolder private constructor() {
 
     fun app(): Application {
         return application
-    }
-
-    private object SingletonHolder {
-        val INSTANCE = AppHolder()
-    }
-
-    companion object {
-        @JvmStatic
-        fun get(): AppHolder {
-            return SingletonHolder.INSTANCE
-        }
     }
 }

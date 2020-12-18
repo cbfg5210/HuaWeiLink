@@ -4,6 +4,9 @@ import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
 import java.text.Collator
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,27 +26,51 @@ object PkgsHolder {
     private val systemApps = ArrayList<PackageInfo>()
     private lateinit var packageManager: PackageManager
 
+    private val livePkgUpdateEvent = PkgUpdateObservable()
+
+    fun observe(lifecycle: Lifecycle, observer: Observer) {
+        lifecycle.addObserver(object : LifecycleObserver {
+            @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+            fun onCreated() {
+                livePkgUpdateEvent.addObserver(observer)
+            }
+
+            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+            fun onDestroyed() {
+                livePkgUpdateEvent.deleteObserver(observer)
+            }
+        })
+    }
+
     fun setup(context: Context) {
         packageManager = context.packageManager
         if (allApps.size == 0) {
             updateList()
+        } else {
+            livePkgUpdateEvent.notifyChanged()
         }
     }
 
     fun updateList() {
-        allApps.clear()
-        installedApps.clear()
-        systemApps.clear()
+        AppExecutors.diskIO().execute {
+            allApps.clear()
+            installedApps.clear()
+            systemApps.clear()
 
-        val collator = Collator.getInstance(Locale.CHINA)
-        val comparator = Comparator<PackageInfo> { o1, o2 ->
-            collator.compare(
+            val collator = Collator.getInstance(Locale.CHINA)
+            val comparator = Comparator<PackageInfo> { o1, o2 ->
+                collator.compare(
                     o1.applicationInfo.loadLabel(packageManager),
                     o2.applicationInfo.loadLabel(packageManager)
-            )
+                )
+            }
+            allApps.addAll(packageManager.getInstalledPackages(0))
+            allApps.sortWith(comparator)
+
+            AppExecutors.mainThread().execute {
+                livePkgUpdateEvent.notifyChanged()
+            }
         }
-        allApps.addAll(packageManager.getInstalledPackages(0))
-        allApps.sortWith(comparator)
     }
 
     fun getAllApps(): List<PackageInfo> = allApps
@@ -69,6 +96,13 @@ object PkgsHolder {
             } else {
                 installedApps.add(it)
             }
+        }
+    }
+
+    private class PkgUpdateObservable : Observable() {
+        fun notifyChanged() {
+            setChanged()
+            notifyObservers()
         }
     }
 }
