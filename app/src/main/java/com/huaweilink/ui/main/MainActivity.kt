@@ -63,19 +63,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                 }
     }
 
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.actionEdit) {
-            startActivityForResult(Intent(this, AllAppActivity::class.java), REQ_CODE)
-            return true
-        }
-        return super.onOptionsItemSelected(item)
-    }*/
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQ_CODE && resultCode == Activity.RESULT_OK) {
